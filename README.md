@@ -1,2 +1,2 @@
 # apiaiclient
-clients for apian
+clients for API.AI
