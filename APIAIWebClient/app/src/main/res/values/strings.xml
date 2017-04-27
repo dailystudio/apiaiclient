@@ -1,0 +1,8 @@
+<resources>
+
+    <string name="app_name">API.AI WebClient</string>
+
+    <string name="hint_apiai_link">Type your agent link here</string>
+    <string name="btn_generate">Generate</string>
+
+</resources>
