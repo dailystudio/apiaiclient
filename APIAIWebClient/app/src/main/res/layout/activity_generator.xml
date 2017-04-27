@@ -8,13 +8,16 @@
     tools:context=".GeneratorActivity">
 
     <EditText
-        style="@style/DefaultEditText"
+        android:id="@+id/agent_url"
+        android:singleLine="true"
+        android:maxLines="1"
         android:hint="@string/hint_apiai_link"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <Button
         android:text="@string/btn_generate"
+        android:id="@+id/btn_gen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
