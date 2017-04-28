@@ -20,6 +20,11 @@
             </intent-filter>
         </activity>
 
+        <provider
+            android:name=".APIAIWebClientDatabaseContentProvider"
+            android:authorities="com.dailystudio.apiaiwebclient"
+            android:exported="true"/>
+
     </application>
 
 </manifest>
