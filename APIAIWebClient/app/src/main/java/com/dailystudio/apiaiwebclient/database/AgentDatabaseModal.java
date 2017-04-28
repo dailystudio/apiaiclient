@@ -7,6 +7,7 @@ import com.dailystudio.dataobject.query.ExpressionToken;
 import com.dailystudio.dataobject.query.Query;
 import com.dailystudio.datetime.dataobject.TimeCapsuleDatabaseReader;
 import com.dailystudio.datetime.dataobject.TimeCapsuleDatabaseWriter;
+import com.dailystudio.development.Logger;
 
 import java.util.List;
 
@@ -38,6 +39,30 @@ public class AgentDatabaseModal {
         writer.insert(agentObject);
 
         return agentObject;
+    }
+
+    public static void updateAgent(Context context, String agentId, String name, String iconUrl) {
+        if (TextUtils.isEmpty(agentId)) {
+            return;
+        }
+
+        AgentObject agentObject = findAgent(context, agentId);
+        if (agentObject == null) {
+            Logger.warn("updating agent(%s) is NOT existed", agentId);
+
+            return;
+        }
+
+        TimeCapsuleDatabaseWriter<AgentObject> writer =
+                new TimeCapsuleDatabaseWriter<>(context, AgentObject.class);
+
+        long now = System.currentTimeMillis();
+
+        agentObject.setTime(now);
+        agentObject.setName(name);
+        agentObject.setIconUrl(iconUrl);
+
+        writer.update(agentObject);
     }
 
     public static void clearAgents(Context context, boolean onlyPredefined) {

@@ -25,6 +25,8 @@
             android:authorities="com.dailystudio.apiaiwebclient"
             android:exported="true"/>
 
+        <service android:name=".database.ResolveAgentService"/>
+
     </application>
 
 </manifest>

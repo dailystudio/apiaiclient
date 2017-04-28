@@ -127,4 +127,16 @@ public class Agent {
                 mName);
     }
 
+    public static String agentIdToUrl(String agentId) {
+        if (TextUtils.isEmpty(agentId)) {
+            return null;
+        }
+
+        StringBuilder builder = new StringBuilder(Constants.DEFAULT_AGENT_URL);
+        builder.append("/");
+        builder.append(agentId);
+
+        return builder.toString();
+    }
+
 }

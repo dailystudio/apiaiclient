@@ -87,6 +87,13 @@ public class APIAIWebClientApplication extends DevBricksApplication {
             return context;
         }
 
+        @Override
+        protected void onPostExecute(Context context) {
+            super.onPostExecute(context);
+
+            if (context != null) {
+            }
+        }
     }
 
     @Override
