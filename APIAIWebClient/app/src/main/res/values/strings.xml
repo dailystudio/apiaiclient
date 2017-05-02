@@ -1,9 +1,10 @@
 <resources>
 
     <string name="app_name">API.AI WebClient</string>
+
     <string name="activity_generator">WebClient Generator</string>
 
-    <string name="hint_apiai_agent_id">Put agent ID here.</string>
+    <string name="action_about">About</string>
 
     <string name="btn_add_agent">Add Agent</string>
 
@@ -12,11 +13,14 @@
     <string name="dialog_remove_title">Confirm</string>
     <string name="dialog_remove_message">Remove this agent permanently?</string>
 
+    <string name="hint_apiai_agent_id">Put agent ID here.</string>
     <string name="prompt_no_agents">No agents available yet.</string>
     <string name="prompt_creating_shortcut">Creating agent shortcut ...</string>
     <string name="prompt_shortcut_created">Shortcut is created successfully.</string>
     <string name="prompt_agent_removed">Agent is removed successfully.</string>
     <string name="prompt_agent_created">Agent is created successfully.</string>
+
+    <string name="app_desc">This application is providing an easy way to test your <a href="http://api.ai">API.AI</a> agent. You can create agent through your Agent ID. The Agent ID could be found in <b>Integrations</b> section of your agent\'s slide menu.\n\nIf you have any problem, please feel free to contact this mail address:\n\n\t\t\tnan.yeah@gmail.com\n\n@Copyright\n2010 - 2017 by Daily Studio.</string>
 
 
 </resources>

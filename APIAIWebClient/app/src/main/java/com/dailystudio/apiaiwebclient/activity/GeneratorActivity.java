@@ -1,11 +1,12 @@
 package com.dailystudio.apiaiwebclient.activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
@@ -13,6 +14,7 @@ import com.dailystudio.apiaiwebclient.Constants;
 import com.dailystudio.apiaiwebclient.R;
 import com.dailystudio.apiaiwebclient.database.AgentDatabaseModal;
 import com.dailystudio.apiaiwebclient.database.ResolveAgentService;
+import com.dailystudio.apiaiwebclient.fragment.AboutFragment;
 import com.dailystudio.app.activity.ActionBarFragmentActivity;
 import com.dailystudio.datetime.CalendarUtils;
 import com.dailystudio.development.Logger;
@@ -56,6 +58,31 @@ public class GeneratorActivity extends ActionBarFragmentActivity {
         mAgentIdInput = (EditText) findViewById(R.id.agent_id);
         if (mAgentIdInput != null) {
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_about) {
+            AboutFragment fragment = new AboutFragment();
+
+            fragment.show(getSupportFragmentManager(), "about");
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private void createAgent(String agentId) {

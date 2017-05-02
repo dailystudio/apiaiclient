@@ -12,4 +12,19 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="SectionLabel">
+        <item name="android:gravity">start|center_vertical</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">@dimen/section_label_font_size</item>
+        <item name="android:padding">@dimen/app_ver_padding</item>
+    </style>
+
+    <style name="AppVerName">
+        <item name="android:gravity">start|center_vertical</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">@dimen/app_ver_font_size</item>
+        <item name="android:paddingStart">@dimen/app_ver_padding</item>
+    </style>
+
 </resources>
