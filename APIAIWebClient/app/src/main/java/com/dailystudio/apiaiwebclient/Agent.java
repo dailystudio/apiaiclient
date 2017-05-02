@@ -97,7 +97,7 @@ public class Agent {
         String iconFile = Directories.getTempFilePath(now + ".png");
 
         boolean ret = FileUtils.downloadFile(iconUrl, iconFile,
-                (int)(10 * CalendarUtils.SECOND_IN_MILLIS),
+                (int)(5 * CalendarUtils.SECOND_IN_MILLIS),
                 FileUtils.DOWNLOAD_READ_TIMEOUT);
         if (ret == false) {
             return null;

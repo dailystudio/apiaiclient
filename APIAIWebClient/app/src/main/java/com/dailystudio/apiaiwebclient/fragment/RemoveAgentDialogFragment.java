@@ -15,6 +15,8 @@ import com.dailystudio.apiaiwebclient.database.AgentDatabaseModal;
 import com.dailystudio.app.fragment.BaseIntentDialogFragment;
 import com.dailystudio.development.Logger;
 
+import org.greenrobot.eventbus.EventBus;
+
 /**
  * Created by nanye on 16/9/29.
  */
@@ -43,6 +45,8 @@ public class RemoveAgentDialogFragment extends BaseIntentDialogFragment {
             final Context context = params[0];
 
             AgentDatabaseModal.deleteAgent(context, mAgentId);
+
+            EventBus.getDefault().post(Constants.ActionEvent.AGENT_REMOVED);
 
             return null;
         }

@@ -1,13 +1,11 @@
 package com.dailystudio.apiaiwebclient.ui;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
@@ -21,6 +19,8 @@ import com.dailystudio.apiaiwebclient.fragment.RemoveAgentDialogFragment;
 import com.dailystudio.app.ui.AbsArrayItemViewHolder;
 import com.dailystudio.development.Logger;
 import com.nostra13.universalimageloader.core.ImageLoader;
+
+import org.greenrobot.eventbus.EventBus;
 
 /**
  * Created by nanye on 17/5/2.
@@ -127,6 +127,7 @@ public class AgentViewHolder extends AbsArrayItemViewHolder<AgentObject> {
                     Logger.debug("create shortcut for agent: %s", agentObject);
 
                     if (v != null) {
+                        EventBus.getDefault().post(Constants.ActionEvent.CREATING_SHORTCUT);
                         new GenerateShortcutAsyncTask(agentObject).executeOnExecutor(
                                 AsyncTask.THREAD_POOL_EXECUTOR, v.getContext());
                     }

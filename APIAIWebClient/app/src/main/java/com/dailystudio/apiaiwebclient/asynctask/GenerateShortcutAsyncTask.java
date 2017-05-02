@@ -8,9 +8,12 @@ import android.os.AsyncTask;
 import android.text.TextUtils;
 
 import com.dailystudio.apiaiwebclient.Agent;
+import com.dailystudio.apiaiwebclient.Constants;
 import com.dailystudio.apiaiwebclient.R;
 import com.dailystudio.apiaiwebclient.database.AgentObject;
 import com.dailystudio.development.Logger;
+
+import org.greenrobot.eventbus.EventBus;
 
 /**
  * Created by nanye on 17/5/2.
@@ -81,6 +84,8 @@ public class GenerateShortcutAsyncTask extends AsyncTask<Context, Void, Void> {
 
         addIntent.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
         context.sendBroadcast(addIntent);
+
+        EventBus.getDefault().post(Constants.ActionEvent.SHORTCUT_CREATED);
 
         return null;
     }
