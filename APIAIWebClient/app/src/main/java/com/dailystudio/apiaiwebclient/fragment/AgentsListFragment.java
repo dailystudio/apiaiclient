@@ -1,14 +1,18 @@
 package com.dailystudio.apiaiwebclient.fragment;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.dailystudio.apiaiwebclient.Agent;
 import com.dailystudio.apiaiwebclient.R;
 import com.dailystudio.apiaiwebclient.database.AgentObject;
 import com.dailystudio.apiaiwebclient.loader.AgentsLoader;
@@ -71,6 +75,28 @@ public class AgentsListFragment extends AbsArrayRecyclerViewFragment<AgentObject
     @Override
     public Loader<List<AgentObject>> onCreateLoader(int id, Bundle args) {
         return new AgentsLoader(getActivity());
+    }
+
+    @Override
+    protected void onItemClick(View view, Object item) {
+//        super.onItemClick(view, item);
+        if (item instanceof AgentObject == false) {
+            return;
+        }
+
+        AgentObject ao = (AgentObject)item;
+
+        final String url =
+                Agent.agentIdToUrl(ao.getAgentId());
+        if (TextUtils.isEmpty(url)) {
+            return;
+        }
+
+        Intent i = new Intent(Intent.ACTION_VIEW);
+
+        i.setData(Uri.parse(url));
+
+        startActivity(i);
     }
 
 }

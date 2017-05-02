@@ -11,13 +11,13 @@
         android:id="@+id/agent_url"
         android:singleLine="true"
         android:maxLines="1"
-        android:hint="@string/hint_apiai_link"
+        android:hint="@string/hint_apiai_agent_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <Button
-        android:id="@+id/btn_gen"
-        android:text="@string/btn_generate"
+        android:id="@+id/btn_add"
+        android:text="@string/btn_add_agent"
         android:layout_below="@id/agent_url"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -25,7 +25,7 @@
     <fragment
         android:id="@+id/fragment_agents"
         android:name="com.dailystudio.apiaiwebclient.fragment.AgentsListFragment"
-        android:layout_below="@id/btn_gen"
+        android:layout_below="@id/btn_add"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

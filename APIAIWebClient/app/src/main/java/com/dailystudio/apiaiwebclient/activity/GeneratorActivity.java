@@ -86,7 +86,7 @@ public class GeneratorActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_generator);
 
-        mGenButton = findViewById(R.id.btn_gen);
+        mGenButton = findViewById(R.id.btn_add);
         if (mGenButton != null) {
             mGenButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -110,7 +110,6 @@ public class GeneratorActivity extends AppCompatActivity {
 
         mAgentUrlInput = (EditText) findViewById(R.id.agent_url);
         if (mAgentUrlInput != null) {
-            mAgentUrlInput.setText(Constants.AGENT_URL_PREFIX);
         }
     }
 

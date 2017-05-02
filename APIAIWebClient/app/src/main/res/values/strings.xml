@@ -2,7 +2,8 @@
 
     <string name="app_name">API.AI WebClient</string>
 
-    <string name="hint_apiai_link">Type your agent link here</string>
-    <string name="btn_generate">Generate</string>
+    <string name="hint_apiai_agent_id">Put agent ID here.</string>
+
+    <string name="btn_add_agent">Add Agent</string>
 
 </resources>

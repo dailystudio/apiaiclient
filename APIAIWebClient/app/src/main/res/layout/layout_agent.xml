@@ -1,35 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:padding="@dimen/default_content_padding"
-    android:orientation="vertical"
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/DefaultCardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/agent_icon"
-        android:src="@mipmap/ic_launcher"
-        android:layout_centerVertical="true"
-        android:layout_width="@dimen/default_res_icon_size"
-        android:layout_height="@dimen/default_res_icon_size"/>
-
-    <LinearLayout
+    <RelativeLayout
+        android:padding="@dimen/agent_card_padding"
         android:orientation="vertical"
-        android:layout_toEndOf="@id/agent_icon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/agent_name"
-            style="@style/DefaultListItemText1stLine"
+        <ImageView
+            android:id="@+id/agent_icon"
+            android:src="@mipmap/ic_launcher"
+            android:layout_margin="@dimen/lv_item_padding"
+            android:layout_centerVertical="true"
+            android:layout_width="@dimen/default_res_icon_size"
+            android:layout_height="@dimen/default_res_icon_size"/>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_toEndOf="@id/agent_icon"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/agent_id"
-            style="@style/DefaultListItemText2ndLine"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/agent_name"
+                style="@style/DefaultListItemText1stLine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/agent_id"
+                style="@style/DefaultListItemText2ndLine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-</RelativeLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
