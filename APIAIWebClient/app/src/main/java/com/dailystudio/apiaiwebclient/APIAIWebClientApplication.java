@@ -1,17 +1,21 @@
 package com.dailystudio.apiaiwebclient;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.text.TextUtils;
 
 import com.dailystudio.apiaiwebclient.database.AgentDatabaseModal;
 import com.dailystudio.apiaiwebclient.database.PredefinedAgents;
+import com.dailystudio.apiaiwebclient.database.ResolveAgentService;
 import com.dailystudio.app.DevBricksApplication;
 import com.dailystudio.app.utils.FileUtils;
 import com.dailystudio.development.Logger;
 import com.facebook.stetho.Stetho;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import java.io.IOException;
 
@@ -91,8 +95,16 @@ public class APIAIWebClientApplication extends DevBricksApplication {
         protected void onPostExecute(Context context) {
             super.onPostExecute(context);
 
-            if (context != null) {
+            if (context == null) {
+                return;
             }
+
+            Intent srvIntent = new Intent(Constants.ACTION_RESOLVE_AGENTS);
+
+            srvIntent.setClass(context.getApplicationContext(),
+                    ResolveAgentService.class);
+
+            context.startService(srvIntent);
         }
     }
 
@@ -103,6 +115,12 @@ public class APIAIWebClientApplication extends DevBricksApplication {
         if (BuildConfig.USE_STETHO) {
             Stetho.initializeWithDefaults(this);
         }
+
+        ImageLoaderConfiguration config =
+                new ImageLoaderConfiguration.Builder(this).build();
+
+        ImageLoader.getInstance().init(config);
+
 
         new ImportPredefinedAgentsAsyncTask()
                 .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, this);

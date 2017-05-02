@@ -132,7 +132,7 @@ public class Agent {
             return null;
         }
 
-        StringBuilder builder = new StringBuilder(Constants.DEFAULT_AGENT_URL);
+        StringBuilder builder = new StringBuilder(Constants.AGENT_URL_PREFIX);
         builder.append("/");
         builder.append(agentId);
 

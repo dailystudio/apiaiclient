@@ -1,17 +1,20 @@
-package com.dailystudio.apiaiwebclient;
+package com.dailystudio.apiaiwebclient.activity;
 
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 
+import com.dailystudio.apiaiwebclient.Agent;
+import com.dailystudio.apiaiwebclient.Constants;
+import com.dailystudio.apiaiwebclient.R;
 import com.dailystudio.development.Logger;
 
 public class GeneratorActivity extends AppCompatActivity {
@@ -107,7 +110,7 @@ public class GeneratorActivity extends AppCompatActivity {
 
         mAgentUrlInput = (EditText) findViewById(R.id.agent_url);
         if (mAgentUrlInput != null) {
-            mAgentUrlInput.setText(Constants.DEFAULT_AGENT_URL);
+            mAgentUrlInput.setText(Constants.AGENT_URL_PREFIX);
         }
     }
 

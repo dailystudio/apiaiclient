@@ -10,6 +10,8 @@ import com.dailystudio.apiaiwebclient.Agent;
 import com.dailystudio.apiaiwebclient.Constants;
 import com.dailystudio.development.Logger;
 
+import java.util.List;
+
 /**
  * Created by nanye on 17/4/28.
  */
@@ -45,6 +47,22 @@ public class ResolveAgentService extends IntentService {
             }
 
             AgentDatabaseModal.updateAgent(this, agentId, name, iconUrl);
+        } else if (Constants.ACTION_RESOLVE_AGENTS.equals(action)) {
+            List<AgentObject> unresolvedAgents =
+                    AgentDatabaseModal.listUnresolvedAgents(getBaseContext());
+            Logger.debug("unresolved agents: %s", unresolvedAgents);
+
+            if (unresolvedAgents != null) {
+                Intent i = new Intent(Constants.ACTION_RESOLVE_AGENT);
+                i.setClass(getApplicationContext(),
+                        ResolveAgentService.class);
+
+                for (AgentObject ao : unresolvedAgents) {
+                    i.putExtra(Constants.EXTRA_AGENT_ID, ao.getAgentId());
+
+                    startService(i);
+                }
+            }
         }
     }
 }

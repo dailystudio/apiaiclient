@@ -130,4 +130,25 @@ public class AgentDatabaseModal {
         return reader.query(query);
     }
 
+    public static List<AgentObject> listUnresolvedAgents(Context context) {
+        if (context == null) {
+            return null;
+        }
+
+        TimeCapsuleDatabaseReader<AgentObject> reader =
+                new TimeCapsuleDatabaseReader<>(context,
+                        AgentObject.class);
+
+        Query query = new Query(AgentObject.class);
+
+        ExpressionToken selToken =
+                AgentObject.COLUMN_ICON_URL.isNull();
+
+        if (selToken != null) {
+            query.setSelection(selToken);
+        }
+
+        return reader.query(query);
+    }
+
 }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:padding="@dimen/default_content_padding"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GeneratorActivity">
+    tools:context=".activity.GeneratorActivity">
 
     <EditText
         android:id="@+id/agent_url"
@@ -16,9 +16,17 @@
         android:layout_height="wrap_content"/>
 
     <Button
-        android:text="@string/btn_generate"
         android:id="@+id/btn_gen"
+        android:text="@string/btn_generate"
+        android:layout_below="@id/agent_url"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-</LinearLayout>
+    <fragment
+        android:id="@+id/fragment_agents"
+        android:name="com.dailystudio.apiaiwebclient.fragment.AgentsListFragment"
+        android:layout_below="@id/btn_gen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</RelativeLayout>

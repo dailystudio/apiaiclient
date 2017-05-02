@@ -48,8 +48,8 @@ public class AgentObject extends TimeCapsule {
         setValue(COLUMN_AGENT_ID, aid);
     }
 
-    public double getAgentId() {
-        return getDoubleValue(COLUMN_AGENT_ID);
+    public String getAgentId() {
+        return getTextValue(COLUMN_AGENT_ID);
     }
 
     public void setPredefined(boolean predefined) {
@@ -64,16 +64,16 @@ public class AgentObject extends TimeCapsule {
         setValue(COLUMN_NAME, name);
     }
 
-    public double getName() {
-        return getDoubleValue(COLUMN_NAME);
+    public String getName() {
+        return getTextValue(COLUMN_NAME);
     }
 
     public void setIconUrl(String icon) {
         setValue(COLUMN_ICON_URL, icon);
     }
 
-    public double getIconUrl() {
-        return getDoubleValue(COLUMN_ICON_URL);
+    public String getIconUrl() {
+        return getTextValue(COLUMN_ICON_URL);
     }
 
     @Override

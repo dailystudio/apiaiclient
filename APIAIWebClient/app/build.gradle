@@ -66,5 +66,7 @@ dependencies {
 
     compile "com.facebook.stetho:stetho:${project.ext.stethoVersion}"
     compile "org.jsoup:jsoup:${project.ext.jsoupVersion}"
+    compile "com.nostra13.universalimageloader:universal-image-loader:${project.ext.imageLoaderVersion}"
+
     compile project(':devbricks')
 }
