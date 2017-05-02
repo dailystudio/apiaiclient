@@ -80,43 +80,51 @@ public class AgentViewHolder extends AbsArrayItemViewHolder<AgentObject> {
                         iconUrl,
                         mIconView,
                         Constants.DEFAULT_IMAGE_LOADER_OPTIONS);
+            } else {
+                mIconView.setImageResource(R.mipmap.ic_launcher);
             }
         }
 
         if (mBtnRemove != null) {
-            mBtnRemove.setOnClickListener(new View.OnClickListener() {
+            if (agentObject.isPredefined()) {
+                mBtnRemove.setVisibility(View.GONE);
+                mBtnRemove.setOnClickListener(null);
+            } else {
+                mBtnRemove.setVisibility(View.VISIBLE);
+                mBtnRemove.setOnClickListener(new View.OnClickListener() {
 
-                @Override
-                public void onClick(View v) {
-                    Logger.debug("remove agent: %s", agentObject);
+                    @Override
+                    public void onClick(View v) {
+                        Logger.debug("remove agent: %s", agentObject);
 
-                    if (v == null) {
-                        return;
-                    }
+                        if (v == null) {
+                            return;
+                        }
 
-                    final Context context = v.getContext();
-                    if (context == null) {
-                        return;
-                    }
+                        final Context context = v.getContext();
+                        if (context == null) {
+                            return;
+                        }
 
-                    if (mFragmentManager != null) {
-                        Bundle args = new Bundle();
+                        if (mFragmentManager != null) {
+                            Bundle args = new Bundle();
 
-                        args.putString(Constants.EXTRA_AGENT_ID,
-                                agentObject.getAgentId());
-                        Fragment fragment = Fragment.instantiate(context,
-                                RemoveAgentDialogFragment.class.getName(), args);
+                            args.putInt(Constants.EXTRA_ID,
+                                    agentObject.getId());
+                            Fragment fragment = Fragment.instantiate(context,
+                                    RemoveAgentDialogFragment.class.getName(), args);
 
-                        if (fragment instanceof RemoveAgentDialogFragment) {
-                            FragmentTransaction ft =
-                                    mFragmentManager.beginTransaction();
-                            ((RemoveAgentDialogFragment)fragment).show(
-                                    ft, "remove-agent");
+                            if (fragment instanceof RemoveAgentDialogFragment) {
+                                FragmentTransaction ft =
+                                        mFragmentManager.beginTransaction();
+                                ((RemoveAgentDialogFragment) fragment).show(
+                                        ft, "remove-agent");
+                            }
                         }
                     }
-                }
 
-            });
+                });
+            }
         }
 
         if (mBtnShortcut != null) {

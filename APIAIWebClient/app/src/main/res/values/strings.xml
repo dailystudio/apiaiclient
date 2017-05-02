@@ -16,6 +16,7 @@
     <string name="prompt_creating_shortcut">Creating agent shortcut ...</string>
     <string name="prompt_shortcut_created">Shortcut is created successfully.</string>
     <string name="prompt_agent_removed">Agent is removed successfully.</string>
+    <string name="prompt_agent_created">Agent is created successfully.</string>
 
 
 </resources>

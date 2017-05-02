@@ -25,33 +25,30 @@ public class RemoveAgentDialogFragment extends BaseIntentDialogFragment {
 
     private class RemoveAgentAsyncTask extends AsyncTask<Context, Void, Void> {
 
-        private String mAgentId;
+        private int mId;
 
-        private RemoveAgentAsyncTask(String agentId) {
-            mAgentId = agentId;
+        private RemoveAgentAsyncTask(int id) {
+            mId = id;
         }
 
         @Override
         protected Void doInBackground(Context... params) {
-            Logger.debug("removing agent: id = %s", mAgentId);
+            Logger.debug("removing agent: id = %s", mId);
             if (params == null || params.length <= 0) {
-                return null;
-            }
-
-            if (TextUtils.isEmpty(mAgentId)) {
                 return null;
             }
 
             final Context context = params[0];
 
-            AgentDatabaseModal.deleteAgent(context, mAgentId);
+            AgentDatabaseModal.deleteAgent(context, mId);
 
             EventBus.getDefault().post(Constants.ActionEvent.AGENT_REMOVED);
 
             return null;
         }
     }
-    private String mAgentId;
+
+    private int mId;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,10 +56,10 @@ public class RemoveAgentDialogFragment extends BaseIntentDialogFragment {
 
         Bundle args = getArguments();
         if (args != null) {
-            mAgentId = args.getString(Constants.EXTRA_AGENT_ID);
+            mId = args.getInt(Constants.EXTRA_ID);
 
-            Logger.debug("remove agent confirm: agentId = %s",
-                    mAgentId);
+            Logger.debug("remove agent confirm: id = %d",
+                    mId);
         }
     }
 
@@ -75,7 +72,7 @@ public class RemoveAgentDialogFragment extends BaseIntentDialogFragment {
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        new RemoveAgentAsyncTask(mAgentId).execute(getContext());
+                        new RemoveAgentAsyncTask(mId).execute(getContext());
                     }
 
                 })

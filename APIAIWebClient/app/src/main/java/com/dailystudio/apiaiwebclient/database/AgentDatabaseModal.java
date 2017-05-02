@@ -41,15 +41,14 @@ public class AgentDatabaseModal {
         return agentObject;
     }
 
-    public static void deleteAgent(Context context, String agentId) {
+    public static void deleteAgent(Context context, int id) {
         TimeCapsuleDatabaseWriter<AgentObject> writer =
                 new TimeCapsuleDatabaseWriter<>(context, AgentObject.class);
-
 
         Query query = writer.getQuery();
 
         ExpressionToken selToken =
-                AgentObject.COLUMN_AGENT_ID.eq(agentId);
+                AgentObject.COLUMN_ID.eq(id);
         if (selToken == null) {
             return;
         }

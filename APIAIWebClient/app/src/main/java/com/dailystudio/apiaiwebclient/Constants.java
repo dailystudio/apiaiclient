@@ -20,19 +20,23 @@ public class Constants {
     public final static String EXTRA_AGENT_ID =
             "apiaiwebclient.intent.EXTRA_AGENT_ID";
 
+    public final static String EXTRA_ID =
+            "apiaiwebclient.intent.EXTRA_ID";
+
     public final static DisplayImageOptions DEFAULT_IMAGE_LOADER_OPTIONS =
             new DisplayImageOptions.Builder()
                     .cacheInMemory(true)
                     .cacheOnDisk(true)
-                    .showImageOnLoading(null)
                     .showImageOnLoading(R.mipmap.ic_launcher)
                     .showImageOnFail(R.mipmap.ic_launcher)
                     .resetViewBeforeLoading(true)
                     .build();
 
-    public static enum ActionEvent {
+    public enum ActionEvent {
         CREATING_SHORTCUT,
         SHORTCUT_CREATED,
+
+        AGENT_CREATED,
         AGENT_REMOVED,
     }
 
