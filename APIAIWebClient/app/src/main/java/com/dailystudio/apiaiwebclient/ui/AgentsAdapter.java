@@ -1,6 +1,7 @@
 package com.dailystudio.apiaiwebclient.ui;
 
 import android.content.Context;
+import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -14,15 +15,19 @@ import com.dailystudio.app.ui.AbsArrayRecyclerAdapter;
 
 public class AgentsAdapter extends AbsArrayRecyclerAdapter<AgentObject, AgentViewHolder> {
 
-    public AgentsAdapter(Context context) {
+    private FragmentManager mFragmentManager;
+
+    public AgentsAdapter(Context context, FragmentManager frgMgr) {
         super(context);
+
+        mFragmentManager = frgMgr;
     }
 
     @Override
     public AgentViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = mLayoutInflater.inflate(R.layout.layout_agent, null);
 
-        return new AgentViewHolder(view);
+        return new AgentViewHolder(view, mFragmentManager);
     }
 
 }

@@ -41,6 +41,24 @@ public class AgentDatabaseModal {
         return agentObject;
     }
 
+    public static void deleteAgent(Context context, String agentId) {
+        TimeCapsuleDatabaseWriter<AgentObject> writer =
+                new TimeCapsuleDatabaseWriter<>(context, AgentObject.class);
+
+
+        Query query = writer.getQuery();
+
+        ExpressionToken selToken =
+                AgentObject.COLUMN_AGENT_ID.eq(agentId);
+        if (selToken == null) {
+            return;
+        }
+
+        query.setSelection(selToken);
+
+        writer.delete(query);
+    }
+
     public static void updateAgent(Context context, String agentId, String name, String iconUrl) {
         if (TextUtils.isEmpty(agentId)) {
             return;

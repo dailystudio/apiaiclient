@@ -1,7 +1,9 @@
 package com.dailystudio.apiaiwebclient.database;
 
 import android.content.Context;
+import android.text.TextUtils;
 
+import com.dailystudio.apiaiwebclient.Agent;
 import com.dailystudio.dataobject.Column;
 import com.dailystudio.dataobject.IntegerColumn;
 import com.dailystudio.dataobject.Template;
@@ -84,6 +86,15 @@ public class AgentObject extends TimeCapsule {
                 getAgentId(),
                 getName(),
                 getIconUrl());
+    }
+
+    public Agent convertToAgent() {
+        final String url = Agent.agentIdToUrl(getAgentId());
+        if (TextUtils.isEmpty(url)) {
+            return null;
+        }
+
+        return new Agent(url);
     }
 
 }

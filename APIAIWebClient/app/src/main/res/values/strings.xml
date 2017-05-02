@@ -1,9 +1,16 @@
 <resources>
 
     <string name="app_name">API.AI WebClient</string>
+    <string name="activity_generator">WebClient Generator</string>
 
     <string name="hint_apiai_agent_id">Put agent ID here.</string>
 
     <string name="btn_add_agent">Add Agent</string>
+    <string name="prompt_no_agents">No agents available yet.</string>
+
+    <string name="agents_list_title">Existed agents</string>
+
+    <string name="dialog_remove_title">Confirm</string>
+    <string name="dialog_remove_message">Remove this agent permanently?</string>
 
 </resources>

@@ -1,10 +1,12 @@
 package com.dailystudio.apiaiwebclient.fragment;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.Loader;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -32,7 +34,7 @@ public class AgentsListFragment extends AbsArrayRecyclerViewFragment<AgentObject
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_recycler_view, null);
+        View view = inflater.inflate(R.layout.fragment_agents_list, null);
 
         setupViews(view);
 
@@ -59,7 +61,13 @@ public class AgentsListFragment extends AbsArrayRecyclerViewFragment<AgentObject
 
     @Override
     protected RecyclerView.Adapter onCreateAdapter() {
-        return new AgentsAdapter(getActivity());
+        final Activity activity = getActivity();
+        if (activity instanceof AppCompatActivity == false) {
+            return null;
+        }
+
+        return new AgentsAdapter(activity,
+                ((AppCompatActivity)activity).getSupportFragmentManager());
     }
 
     @Override
