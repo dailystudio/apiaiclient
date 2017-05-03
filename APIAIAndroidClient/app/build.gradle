@@ -1,6 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
+
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+    }
+
     compileSdkVersion Integer.parseInt(androidCompileSdkVersion)
     buildToolsVersion androidBuildToolsVersion
 
@@ -63,6 +68,10 @@ dependencies {
     compile "org.jsoup:jsoup:${project.ext.jsoupVersion}"
     compile "com.nostra13.universalimageloader:universal-image-loader:${project.ext.imageLoaderVersion}"
     compile "org.greenrobot:eventbus:${project.ext.eventBusVersion}"
+
+    compile "ai.api:libai:${project.ext.libaiVersion}"
+    compile "ai.api:sdk:${project.ext.aiSdkVersion}"
+    compile "commons-io:commons-io:${project.ext.commonIoVersion}"
 
     compile project(':devbricks')
 }
