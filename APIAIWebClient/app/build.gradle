@@ -55,15 +55,6 @@ android {
     }
 }
 
-repositories {
-    maven {
-        url 'https://raw.github.com/vRallev/mvn-repo/master/'
-    }
-
-    maven { url "https://jitpack.io" }
-    maven { url 'http://guardian.github.com/maven/repo-releases' }
-}
-
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
