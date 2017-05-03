@@ -1,0 +1,68 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion Integer.parseInt(androidCompileSdkVersion)
+    buildToolsVersion androidBuildToolsVersion
+
+    defaultConfig {
+        applicationId "com.dailystudio.apiaiandroidclient"
+        minSdkVersion Integer.parseInt(androidMinSdkVersion)
+        targetSdkVersion Integer.parseInt(androidTargetSdkVersion)
+        versionCode Integer.parseInt(appVersionCode)
+        versionName appVersion
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    signingConfigs {
+
+        release {
+            storeFile file(RELEASE_STORE_FILE)
+            storePassword RELEASE_STORE_PASSWORD
+            keyAlias RELEASE_KEY_ALIAS
+            keyPassword RELEASE_KEY_PASSWORD
+        }
+
+        debug {
+            storeFile file(DEBUG_STORE_FILE)
+            storePassword DEBUG_STORE_PASSWORD
+            keyAlias DEBUG_KEY_ALIAS
+            keyPassword DEBUG_KEY_PASSWORD
+        }
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            signingConfig signingConfigs.release
+
+            buildConfigField "boolean","USE_STETHO","false"
+        }
+
+        debug {
+            debuggable true
+            signingConfig signingConfigs.debug
+            versionNameSuffix " (DEBUG)"
+
+            buildConfigField "boolean","USE_STETHO","true"
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+
+    compile "com.facebook.stetho:stetho:${project.ext.stethoVersion}"
+    compile "org.jsoup:jsoup:${project.ext.jsoupVersion}"
+    compile "com.nostra13.universalimageloader:universal-image-loader:${project.ext.imageLoaderVersion}"
+    compile "org.greenrobot:eventbus:${project.ext.eventBusVersion}"
+
+    compile project(':devbricks')
+}
