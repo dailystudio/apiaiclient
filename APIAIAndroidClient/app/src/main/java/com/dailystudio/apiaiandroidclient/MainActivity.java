@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.dailystudio.app.activity.ActionBarFragmentActivity;
 import com.dailystudio.development.Logger;
+import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 
 import java.util.Map;
@@ -17,6 +18,7 @@ import ai.api.android.AIDataService;
 import ai.api.android.AIService;
 import ai.api.model.AIRequest;
 import ai.api.model.AIResponse;
+import ai.api.model.ResponseMessage;
 import ai.api.model.Result;
 
 public class MainActivity extends ActionBarFragmentActivity {
@@ -77,7 +79,9 @@ public class MainActivity extends ActionBarFragmentActivity {
                             // Show results in TextView.
                             Logger.debug("Query:" + result.getResolvedQuery() +
                                     "\nAction: " + result.getAction() +
-                                    "\nParameters: " + parameterString);
+                                    "\nParameters: " + parameterString +
+                                    "\nFulfillment: "
+                                    + ((ResponseMessage.ResponseSpeech)result.getFulfillment().getMessages().get(0)).getSpeech());
                         }
                     }
                 }.execute(aiRequest);
