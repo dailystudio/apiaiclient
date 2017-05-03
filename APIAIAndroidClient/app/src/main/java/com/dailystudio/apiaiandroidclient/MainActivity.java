@@ -16,6 +16,7 @@ import ai.api.AIServiceException;
 import ai.api.android.AIConfiguration;
 import ai.api.android.AIDataService;
 import ai.api.android.AIService;
+import ai.api.android.GsonFactory;
 import ai.api.model.AIRequest;
 import ai.api.model.AIResponse;
 import ai.api.model.ResponseMessage;
@@ -76,6 +77,8 @@ public class MainActivity extends ActionBarFragmentActivity {
                                 }
                             }
 
+                            Logger.debug("Original Gson: %s",
+                                    GsonFactory.getGson().toJson(aiResponse));
                             // Show results in TextView.
                             Logger.debug("Query:" + result.getResolvedQuery() +
                                     "\nAction: " + result.getAction() +
