@@ -74,4 +74,5 @@ dependencies {
     compile "commons-io:commons-io:${project.ext.commonIoVersion}"
 
     compile project(':devbricks')
+    compile project(':apiaicommon')
 }
