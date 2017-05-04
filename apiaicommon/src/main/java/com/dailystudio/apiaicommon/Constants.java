@@ -32,4 +32,13 @@ public class Constants {
                     .resetViewBeforeLoading(true)
                     .build();
 
+    public enum ActionEvent {
+        CREATING_SHORTCUT,
+        SHORTCUT_CREATED,
+
+        AGENT_CREATED,
+        AGENT_REMOVED,
+    }
+
+
 }

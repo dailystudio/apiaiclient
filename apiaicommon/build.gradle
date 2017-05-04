@@ -8,11 +8,15 @@ android {
 
             proguardFile getDefaultProguardFile('proguard-android.txt')
             proguardFile 'proguard-project.txt'
+
+            buildConfigField "boolean","USE_STETHO","false"
         }
 
         debug {
             debuggable true
             versionNameSuffix " (DEBUG)"
+
+            buildConfigField "boolean","USE_STETHO","true"
         }
     }
 
@@ -59,8 +63,10 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile "junit:junit:${project.ext.junitVerion}"
 
+    compile "com.facebook.stetho:stetho:${project.ext.stethoVersion}"
     compile "org.jsoup:jsoup:${project.ext.jsoupVersion}"
     compile "com.nostra13.universalimageloader:universal-image-loader:${project.ext.imageLoaderVersion}"
+    compile "org.greenrobot:eventbus:${project.ext.eventBusVersion}"
 
     compile project(':devbricks')
 }

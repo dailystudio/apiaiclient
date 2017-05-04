@@ -5,6 +5,15 @@
 
     <uses-sdk android:minSdkVersion="15" android:targetSdkVersion="23" />
 
-    <application/>
+    <application>
+
+        <provider
+            android:name=".APIAICommonDatabaseContentProvider"
+            android:authorities="${applicationId}.agent"
+            android:exported="true"/>
+
+        <service android:name=".database.ResolveAgentService"/>
+
+    </application>
 
 </manifest>
