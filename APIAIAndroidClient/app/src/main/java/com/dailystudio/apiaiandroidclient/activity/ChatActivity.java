@@ -1,35 +1,21 @@
-package com.dailystudio.apiaiandroidclient;
+package com.dailystudio.apiaiandroidclient.activity;
 
-import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 
+import com.dailystudio.apiaiandroidclient.R;
 import com.dailystudio.app.activity.ActionBarFragmentActivity;
-import com.dailystudio.development.Logger;
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
 
-import java.util.Map;
-
-import ai.api.AIServiceException;
 import ai.api.android.AIConfiguration;
-import ai.api.android.AIDataService;
 import ai.api.android.AIService;
-import ai.api.android.GsonFactory;
-import ai.api.model.AIRequest;
-import ai.api.model.AIResponse;
-import ai.api.model.ResponseMessage;
-import ai.api.model.Result;
 
-public class MainActivity extends ActionBarFragmentActivity {
+public class ChatActivity extends ActionBarFragmentActivity {
 
     private AIService aiService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_chat);
 
         setupViewApiAi();
     }
@@ -38,7 +24,7 @@ public class MainActivity extends ActionBarFragmentActivity {
         final AIConfiguration config = new AIConfiguration("6b95beccba2349a4b91d3f5838e9bfc5",
                 AIConfiguration.SupportedLanguages.English,
                 AIConfiguration.RecognitionEngine.System);
-
+/*
         findViewById(R.id.talk).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,7 +75,7 @@ public class MainActivity extends ActionBarFragmentActivity {
                     }
                 }.execute(aiRequest);
             }
-        });
+        });*/
     }
 
 }

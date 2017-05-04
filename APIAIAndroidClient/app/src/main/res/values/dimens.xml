@@ -1,0 +1,7 @@
+<resources>
+
+    <dimen name="app_icon_size">72dp</dimen>
+    <dimen name="app_ver_font_size">14dp</dimen>
+    <dimen name="app_ver_padding">3dp</dimen>
+
+</resources>

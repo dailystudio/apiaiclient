@@ -64,15 +64,10 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
 
-    compile "com.facebook.stetho:stetho:${project.ext.stethoVersion}"
-    compile "org.jsoup:jsoup:${project.ext.jsoupVersion}"
-    compile "com.nostra13.universalimageloader:universal-image-loader:${project.ext.imageLoaderVersion}"
-    compile "org.greenrobot:eventbus:${project.ext.eventBusVersion}"
-
     compile "ai.api:libai:${project.ext.libaiVersion}"
     compile "ai.api:sdk:${project.ext.aiSdkVersion}"
     compile "commons-io:commons-io:${project.ext.commonIoVersion}"
 
-    compile project(':devbricks')
-    compile project(':apiaicommon')
+    debugCompile project(path: ':apiaicommon', configuration: 'debug')
+    releaseCompile project(path: ':apiaicommon', configuration: 'release')
 }
