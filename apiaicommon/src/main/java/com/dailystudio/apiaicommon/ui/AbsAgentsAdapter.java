@@ -30,6 +30,10 @@ public abstract class AbsAgentsAdapter extends AbsArrayRecyclerAdapter<AgentObje
         return createViewHolder(view, mFragmentManager);
     }
 
+    protected FragmentManager getFragmentManager() {
+        return mFragmentManager;
+    }
+
     abstract protected AbsAgentViewHolder createViewHolder(View view,
                                                            FragmentManager frgMgr);
 

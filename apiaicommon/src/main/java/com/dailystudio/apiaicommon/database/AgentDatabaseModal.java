@@ -26,7 +26,9 @@ public class AgentDatabaseModal {
         }
 
         TimeCapsuleDatabaseWriter<AgentObject> writer =
-                new TimeCapsuleDatabaseWriter<>(context, AgentObject.class);
+                new TimeCapsuleDatabaseWriter<>(context,
+                        AuthorityResolver.resolveAuthority(context),
+                        AgentObject.class);
 
         long now = System.currentTimeMillis();
 
@@ -43,7 +45,9 @@ public class AgentDatabaseModal {
 
     public static void deleteAgent(Context context, int id) {
         TimeCapsuleDatabaseWriter<AgentObject> writer =
-                new TimeCapsuleDatabaseWriter<>(context, AgentObject.class);
+                new TimeCapsuleDatabaseWriter<>(context,
+                        AuthorityResolver.resolveAuthority(context),
+                        AgentObject.class);
 
         Query query = writer.getQuery();
 
@@ -71,7 +75,9 @@ public class AgentDatabaseModal {
         }
 
         TimeCapsuleDatabaseWriter<AgentObject> writer =
-                new TimeCapsuleDatabaseWriter<>(context, AgentObject.class);
+                new TimeCapsuleDatabaseWriter<>(context,
+                        AuthorityResolver.resolveAuthority(context),
+                        AgentObject.class);
 
         long now = System.currentTimeMillis();
 
@@ -85,6 +91,7 @@ public class AgentDatabaseModal {
     public static void clearAgents(Context context, boolean onlyPredefined) {
         TimeCapsuleDatabaseWriter<AgentObject> writer =
                 new TimeCapsuleDatabaseWriter<>(context,
+                        AuthorityResolver.resolveAuthority(context),
                         AgentObject.class);
 
         Query query = new Query(AgentObject.class);
@@ -110,6 +117,7 @@ public class AgentDatabaseModal {
 
         TimeCapsuleDatabaseReader<AgentObject> reader =
                 new TimeCapsuleDatabaseReader<>(context,
+                        AuthorityResolver.resolveAuthority(context),
                         AgentObject.class);
 
         Query query = reader.getQuery();
@@ -132,6 +140,7 @@ public class AgentDatabaseModal {
 
         TimeCapsuleDatabaseReader<AgentObject> reader =
                 new TimeCapsuleDatabaseReader<>(context,
+                        AuthorityResolver.resolveAuthority(context),
                         AgentObject.class);
 
         Query query = new Query(AgentObject.class);
@@ -154,6 +163,7 @@ public class AgentDatabaseModal {
 
         TimeCapsuleDatabaseReader<AgentObject> reader =
                 new TimeCapsuleDatabaseReader<>(context,
+                        AuthorityResolver.resolveAuthority(context),
                         AgentObject.class);
 
         Query query = new Query(AgentObject.class);

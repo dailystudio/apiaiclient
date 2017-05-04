@@ -135,7 +135,7 @@ public abstract class AbsAgentViewHolder extends AbsArrayItemViewHolder<AgentObj
 
                     if (v != null) {
                         EventBus.getDefault().post(Constants.ActionEvent.CREATING_SHORTCUT);
-                        createAgentShortcut(agentObject);
+                        createAgentShortcut(v.getContext(), agentObject);
                     }
                 }
 
@@ -143,6 +143,7 @@ public abstract class AbsAgentViewHolder extends AbsArrayItemViewHolder<AgentObj
         }
     }
 
-    abstract protected void createAgentShortcut(AgentObject agentObject);
+    abstract protected void createAgentShortcut(Context context,
+                                                AgentObject agentObject);
 
 }

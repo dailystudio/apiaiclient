@@ -26,7 +26,7 @@ import java.util.List;
  * Created by nanye on 17/5/2.
  */
 
-public abstract class AgentsListFragment extends AbsArrayRecyclerViewFragment<AgentObject, AbsAgentViewHolder> {
+public abstract class AbsAgentsListFragment extends AbsArrayRecyclerViewFragment<AgentObject, AbsAgentViewHolder> {
 
     @Nullable
     @Override

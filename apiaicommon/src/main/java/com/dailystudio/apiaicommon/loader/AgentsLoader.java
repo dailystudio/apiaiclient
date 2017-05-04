@@ -3,7 +3,10 @@ package com.dailystudio.apiaicommon.loader;
 import android.content.Context;
 
 import com.dailystudio.apiaicommon.database.AgentObject;
+import com.dailystudio.apiaicommon.database.AuthorityResolver;
 import com.dailystudio.app.dataobject.loader.DatabaseObjectsLoader;
+import com.dailystudio.dataobject.DatabaseObject;
+import com.dailystudio.dataobject.database.DatabaseConnectivity;
 import com.dailystudio.dataobject.query.OrderingToken;
 import com.dailystudio.dataobject.query.Query;
 
@@ -35,6 +38,13 @@ public class AgentsLoader extends DatabaseObjectsLoader<AgentObject> {
     @Override
     protected Class<AgentObject> getObjectClass() {
         return AgentObject.class;
+    }
+
+    @Override
+    protected DatabaseConnectivity getDatabaseConnectivity(Class<? extends DatabaseObject> objectClass) {
+        return new DatabaseConnectivity(getContext(),
+                AuthorityResolver.resolveAuthority(getContext()),
+                objectClass);
     }
 
 }

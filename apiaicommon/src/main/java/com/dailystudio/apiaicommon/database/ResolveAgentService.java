@@ -5,8 +5,8 @@ import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
-import com.dailystudio.apiaiwebclient.Agent;
-import com.dailystudio.apiaiwebclient.Constants;
+import com.dailystudio.apiaicommon.Agent;
+import com.dailystudio.apiaicommon.Constants;
 import com.dailystudio.development.Logger;
 
 import java.util.List;
