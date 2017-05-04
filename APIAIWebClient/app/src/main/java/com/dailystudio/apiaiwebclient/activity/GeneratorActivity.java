@@ -1,23 +1,15 @@
 package com.dailystudio.apiaiwebclient.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.text.Editable;
-import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.EditText;
 
 import com.dailystudio.apiaicommon.Constants;
-import com.dailystudio.apiaicommon.database.AgentDatabaseModal;
-import com.dailystudio.apiaicommon.database.ResolveAgentService;
 import com.dailystudio.apiaiwebclient.R;
 import com.dailystudio.apiaiwebclient.fragment.AboutFragment;
 import com.dailystudio.app.activity.ActionBarFragmentActivity;
 import com.dailystudio.datetime.CalendarUtils;
-import com.dailystudio.development.Logger;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -25,39 +17,11 @@ import org.greenrobot.eventbus.ThreadMode;
 
 public class GeneratorActivity extends ActionBarFragmentActivity {
 
-    private EditText mAgentIdInput;
-    private View mGenButton;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_generator);
-
-        mGenButton = findViewById(R.id.btn_add);
-        if (mGenButton != null) {
-            mGenButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (mAgentIdInput == null) {
-                        return;
-                    }
-
-                    Editable editable = mAgentIdInput.getText();
-                    if (editable == null) {
-                        return;
-                    }
-
-                    createAgent(editable.toString());
-
-                    mAgentIdInput.setText(null);
-                }
-            });
-        }
-
-        mAgentIdInput = (EditText) findViewById(R.id.agent_id);
-        if (mAgentIdInput != null) {
-        }
+        setContentView(R.layout.activity_main);
     }
 
     @Override
@@ -83,25 +47,6 @@ public class GeneratorActivity extends ActionBarFragmentActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    private void createAgent(String agentId) {
-        Logger.debug("create agent: id = %s", agentId);
-        if (TextUtils.isEmpty(agentId)) {
-            return;
-        }
-
-        AgentDatabaseModal.addAgent(this,
-                agentId);
-
-        Intent srvIntent = new Intent(Constants.ACTION_RESOLVE_AGENTS);
-
-        srvIntent.setClass(getApplicationContext(),
-                ResolveAgentService.class);
-
-        startService(srvIntent);
-
-        EventBus.getDefault().post(Constants.ActionEvent.AGENT_CREATED);
     }
 
     @Override
@@ -157,4 +102,5 @@ public class GeneratorActivity extends ActionBarFragmentActivity {
     };
 
     private Handler mHandler = new Handler();
+
 }

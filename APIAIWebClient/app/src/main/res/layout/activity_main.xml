@@ -9,25 +9,16 @@
     android:layout_height="match_parent"
     tools:context=".activity.GeneratorActivity">
 
-    <EditText
-        android:id="@+id/agent_id"
-        android:singleLine="true"
-        android:maxLines="1"
-        android:hint="@string/hint_apiai_agent_id"
+    <fragment
+        android:id="@+id/fragment_add_agent"
+        android:name="com.dailystudio.apiaicommon.fragment.AddAgentFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-
-    <Button
-        android:id="@+id/btn_add"
-        android:text="@string/btn_add_agent"
-        android:layout_below="@id/agent_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
     <fragment
         android:id="@+id/fragment_agents"
         android:name="com.dailystudio.apiaiwebclient.fragment.AgentsListFragment"
-        android:layout_below="@id/btn_add"
+        android:layout_below="@id/fragment_add_agent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
