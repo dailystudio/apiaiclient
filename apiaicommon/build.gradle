@@ -57,13 +57,12 @@ allprojects {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-
-    compile "com.android.support:support-v4:${project.ext.androidSupportVersion}"
-    compile "com.android.support:appcompat-v7:${project.ext.appcompatVersion}"
-
-    compile "com.google.code.gson:gson:${project.ext.gsonVersion}"
-
     testCompile "junit:junit:${project.ext.junitVerion}"
+
+    compile "org.jsoup:jsoup:${project.ext.jsoupVersion}"
+    compile "com.nostra13.universalimageloader:universal-image-loader:${project.ext.imageLoaderVersion}"
+
+    compile project(':devbricks')
 }
 
 task wrapper(type: Wrapper) {
