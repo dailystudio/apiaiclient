@@ -1,5 +1,6 @@
 package com.dailystudio.apiaiwebclient.fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
@@ -17,8 +18,13 @@ import com.dailystudio.apiaiwebclient.ui.AgentsAdapter;
 public class AgentsListFragment extends AbsAgentsListFragment {
 
     @Override
-    protected void launchAgent(AgentObject ao) {
-        if (ao == null) {
+    protected RecyclerView.Adapter onCreateAdapter() {
+        return new AgentsAdapter(getActivity(), getFragmentManager());
+    }
+
+    @Override
+    protected void launchAgent(Context context, AgentObject ao) {
+        if (context == null || ao == null) {
             return;
         }
 
@@ -33,11 +39,6 @@ public class AgentsListFragment extends AbsAgentsListFragment {
         i.setData(Uri.parse(url));
 
         startActivity(i);
-    }
-
-    @Override
-    protected RecyclerView.Adapter onCreateAdapter() {
-        return new AgentsAdapter(getActivity(), getFragmentManager());
     }
 
 }
