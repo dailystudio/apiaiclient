@@ -13,9 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".activity.GeneratorActivity"
+        <activity android:name=".activity.MainActivity"
             android:icon="@mipmap/ic_launcher"
-            android:label="@string/activity_client_generator"
+            android:label="@string/activity_main"
             android:theme="@style/AppTheme">
 
             <intent-filter>

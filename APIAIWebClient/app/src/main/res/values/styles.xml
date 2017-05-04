@@ -8,10 +8,6 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AgentListTitle" parent="DefaultLabel">
-        <item name="android:textStyle">bold</item>
-    </style>
-
     <style name="SectionLabel">
         <item name="android:gravity">start|center_vertical</item>
         <item name="android:textStyle">bold</item>

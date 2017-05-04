@@ -15,7 +15,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-public class GeneratorActivity extends ActionBarFragmentActivity {
+public class MainActivity extends ActionBarFragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
