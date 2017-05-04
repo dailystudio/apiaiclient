@@ -5,17 +5,15 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.text.TextUtils;
 
-import com.dailystudio.apiaiwebclient.database.AgentDatabaseModal;
+import com.dailystudio.apiaicommon.APIAICommonApplication;
+import com.dailystudio.apiaicommon.Constants;
+import com.dailystudio.apiaicommon.database.AgentDatabaseModal;
+import com.dailystudio.apiaicommon.database.ResolveAgentService;
 import com.dailystudio.apiaiwebclient.database.PredefinedAgents;
-import com.dailystudio.apiaiwebclient.database.ResolveAgentService;
-import com.dailystudio.app.DevBricksApplication;
 import com.dailystudio.app.utils.FileUtils;
 import com.dailystudio.development.Logger;
-import com.facebook.stetho.Stetho;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import java.io.IOException;
 
@@ -23,7 +21,7 @@ import java.io.IOException;
  * Created by nanye on 17/4/27.
  */
 
-public class APIAIWebClientApplication extends DevBricksApplication {
+public class APIAIWebClientApplication extends APIAICommonApplication {
 
     private static class ImportPredefinedAgentsAsyncTask extends AsyncTask<Context, Void, Context> {
 
@@ -111,16 +109,6 @@ public class APIAIWebClientApplication extends DevBricksApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-
-        if (BuildConfig.USE_STETHO) {
-            Stetho.initializeWithDefaults(this);
-        }
-
-        ImageLoaderConfiguration config =
-                new ImageLoaderConfiguration.Builder(this).build();
-
-        ImageLoader.getInstance().init(config);
-
 
         new ImportPredefinedAgentsAsyncTask()
                 .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, this);

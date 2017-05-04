@@ -10,10 +10,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
-import com.dailystudio.apiaiwebclient.Constants;
+import com.dailystudio.apiaicommon.Constants;
+import com.dailystudio.apiaicommon.database.AgentDatabaseModal;
+import com.dailystudio.apiaicommon.database.ResolveAgentService;
 import com.dailystudio.apiaiwebclient.R;
-import com.dailystudio.apiaiwebclient.database.AgentDatabaseModal;
-import com.dailystudio.apiaiwebclient.database.ResolveAgentService;
 import com.dailystudio.apiaiwebclient.fragment.AboutFragment;
 import com.dailystudio.app.activity.ActionBarFragmentActivity;
 import com.dailystudio.datetime.CalendarUtils;

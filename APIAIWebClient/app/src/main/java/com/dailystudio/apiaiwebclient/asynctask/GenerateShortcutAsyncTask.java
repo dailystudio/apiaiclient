@@ -7,10 +7,10 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.text.TextUtils;
 
-import com.dailystudio.apiaiwebclient.Agent;
-import com.dailystudio.apiaiwebclient.Constants;
+import com.dailystudio.apiaicommon.Agent;
+import com.dailystudio.apiaicommon.Constants;
+import com.dailystudio.apiaicommon.database.AgentObject;
 import com.dailystudio.apiaiwebclient.R;
-import com.dailystudio.apiaiwebclient.database.AgentObject;
 import com.dailystudio.development.Logger;
 
 import org.greenrobot.eventbus.EventBus;

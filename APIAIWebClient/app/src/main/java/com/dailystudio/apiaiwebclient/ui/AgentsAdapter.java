@@ -3,31 +3,23 @@ package com.dailystudio.apiaiwebclient.ui;
 import android.content.Context;
 import android.support.v4.app.FragmentManager;
 import android.view.View;
-import android.view.ViewGroup;
 
-import com.dailystudio.apiaiwebclient.R;
-import com.dailystudio.apiaiwebclient.database.AgentObject;
-import com.dailystudio.app.ui.AbsArrayRecyclerAdapter;
+import com.dailystudio.apiaicommon.ui.AbsAgentViewHolder;
+import com.dailystudio.apiaicommon.ui.AbsAgentsAdapter;
 
 /**
  * Created by nanye on 17/5/2.
  */
 
-public class AgentsAdapter extends AbsArrayRecyclerAdapter<AgentObject, AgentViewHolder> {
-
-    private FragmentManager mFragmentManager;
+public class AgentsAdapter extends AbsAgentsAdapter {
 
     public AgentsAdapter(Context context, FragmentManager frgMgr) {
-        super(context);
-
-        mFragmentManager = frgMgr;
+        super(context, frgMgr);
     }
 
     @Override
-    public AgentViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mLayoutInflater.inflate(R.layout.layout_agent, null);
-
-        return new AgentViewHolder(view, mFragmentManager);
+    protected AbsAgentViewHolder createViewHolder(View view, FragmentManager frgMgr) {
+        return new AgentViewHolder(view, getFragmentManager());
     }
 
 }
