@@ -17,11 +17,13 @@ public class ChatHistoryDatabaseModal {
     public static void addChatHistory(Context context,
                                       String agentId,
                                       String user,
+                                      String session,
                                       String text,
                                       AIRequest aiRequest) {
         if (context == null
                 || TextUtils.isEmpty(agentId)
                 || TextUtils.isEmpty(user)
+                || TextUtils.isEmpty(session)
                 || aiRequest == null) {
             return;
         }
@@ -35,6 +37,7 @@ public class ChatHistoryDatabaseModal {
         historyObject.setText(text);
         historyObject.setMessage(aiRequest);
         historyObject.setUser(user);
+        historyObject.setSession(session);
 
         TimeCapsuleDatabaseWriter writer =
                 new TimeCapsuleDatabaseWriter(context, ChatHistoryObject.class);
@@ -45,11 +48,13 @@ public class ChatHistoryDatabaseModal {
     public static void addChatHistory(Context context,
                                       String agentId,
                                       String user,
+                                      String session,
                                       String text,
                                       AIResponse aiResponse) {
         if (context == null
                 || TextUtils.isEmpty(agentId)
                 || TextUtils.isEmpty(user)
+                || TextUtils.isEmpty(session)
                 || aiResponse == null) {
             return;
         }
@@ -64,6 +69,7 @@ public class ChatHistoryDatabaseModal {
         historyObject.setText(text);
         historyObject.setMessage(aiResponse);
         historyObject.setUser(user);
+        historyObject.setSession(session);
 
         TimeCapsuleDatabaseWriter writer =
                 new TimeCapsuleDatabaseWriter(context, ChatHistoryObject.class);

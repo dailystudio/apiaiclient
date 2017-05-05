@@ -63,14 +63,17 @@ public class ChatService extends IntentService {
             final String agent = intent.getStringExtra(Constants.EXTRA_AGENT_ID);
             final String user = intent.getStringExtra(Constants.EXTRA_USER);
             final String message = intent.getStringExtra(Constants.EXTRA_MESSAGES);
-            Logger.debug("agent[%s] chat: user: %s, message = %s",
+            final String session = intent.getStringExtra(Constants.EXTRA_SESSION);
+            Logger.debug("agent[%s, session: %s] chat: user: %s, message = %s",
                     agent,
+                    session,
                     user, message);
             if (TextUtils.isEmpty(agent)
                     || TextUtils.isEmpty(user)
+                    || TextUtils.isEmpty(session)
                     || TextUtils.isEmpty(message)) {
-                Logger.warn("invalid agent[%s], user[%s] or message[%s]",
-                        agent, user, message);
+                Logger.warn("invalid agent[%s], user[%s], session[%s] or message[%s]",
+                        agent, user, session, message);
                 return;
             }
 
@@ -82,10 +85,12 @@ public class ChatService extends IntentService {
 
             final AIRequest aiRequest = new AIRequest();
             aiRequest.setQuery(message);
+            aiRequest.setSessionId(session);
 
             ChatHistoryDatabaseModal.addChatHistory(context,
                     agent,
                     user,
+                    session,
                     message,
                     aiRequest);
 
@@ -105,6 +110,7 @@ public class ChatService extends IntentService {
             ChatHistoryDatabaseModal.addChatHistory(context,
                     agent,
                     user,
+                    session,
                     dumpTextFromResponse(aiResponse), aiResponse);
         }
     }

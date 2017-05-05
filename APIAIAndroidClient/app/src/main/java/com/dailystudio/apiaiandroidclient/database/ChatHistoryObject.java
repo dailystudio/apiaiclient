@@ -25,6 +25,7 @@ public class ChatHistoryObject extends TimeCapsule {
 
     public static final Column COLUMN_AGENT_ID = new TextColumn("agent", false);
     public static final Column COLUMN_USER_ID = new TextColumn("user", false);
+    public static final Column COLUMN_SESSION = new TextColumn("session", false);
     public static final Column COLUMN_MESSAGE = new TextColumn("message", false);
     public static final Column COLUMN_TEXT = new TextColumn("text", false);
     public static final Column COLUMN_TYPE = new IntegerColumn("type", false);
@@ -32,6 +33,7 @@ public class ChatHistoryObject extends TimeCapsule {
     private final static Column[] sCloumns = {
             COLUMN_AGENT_ID,
             COLUMN_USER_ID,
+            COLUMN_SESSION,
             COLUMN_MESSAGE,
             COLUMN_TEXT,
             COLUMN_TYPE,
@@ -61,6 +63,14 @@ public class ChatHistoryObject extends TimeCapsule {
 
     public void setUser(String user) {
         setValue(COLUMN_USER_ID, user);
+    }
+
+    public String getSession() {
+        return getTextValue(COLUMN_SESSION);
+    }
+
+    public void setSession(String session) {
+        setValue(COLUMN_SESSION, session);
     }
 
     public Object getMessage() {

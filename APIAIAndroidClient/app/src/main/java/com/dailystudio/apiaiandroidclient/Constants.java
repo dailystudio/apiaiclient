@@ -11,6 +11,9 @@ public class Constants extends com.dailystudio.apiaicommon.Constants {
     public final static String EXTRA_MESSAGES =
             "hellobuddy.intent.EXTRA_MESSAGES";
 
+    public final static String EXTRA_SESSION =
+            "hellobuddy.intent.EXTRA_SESSION";
+
     public final static String EXTRA_AGENT_ID =
             "hellobuddy.intent.EXTRA_AGENT_ID";
 

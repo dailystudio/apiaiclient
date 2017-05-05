@@ -39,6 +39,9 @@ public class AgentsListFragment extends AbsAgentsListFragment {
                 ChatActivity.class);
 
         i.putExtra(Constants.EXTRA_AGENT_ID, ao.getAgentId());
+        i.putExtra(Constants.EXTRA_USER, Constants.DEFAULT_CHAT_USER);
+        i.putExtra(Constants.EXTRA_SESSION,
+                String.valueOf(System.currentTimeMillis()));
 
         startActivity(i);
     }

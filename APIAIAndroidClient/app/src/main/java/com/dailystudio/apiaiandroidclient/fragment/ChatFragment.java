@@ -24,11 +24,8 @@ import com.dailystudio.apiaiandroidclient.ui.ChatHistoryObjectViewHolder;
 import com.dailystudio.apiaiandroidclient.ui.ChatHistoryRecyclerViewAdapter;
 import com.dailystudio.app.fragment.AbsArrayRecyclerViewFragment;
 import com.dailystudio.development.Logger;
-import com.google.gson.Gson;
 
 import java.util.List;
-
-import ai.api.GsonFactory;
 
 /**
  * Created by nanye on 17/3/31.
@@ -40,11 +37,10 @@ public class ChatFragment
     private String mUser;
     private String mAgentId;
 
+    private String mSession;
+
     private EditText mMessageEdit;
     private View mSendBtn;
-
-    private final static Gson GSON =
-            GsonFactory.getDefaultFactory().getGson();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -82,6 +78,7 @@ public class ChatFragment
 
                     apiSrvIntent.putExtra(Constants.EXTRA_AGENT_ID, mAgentId);
                     apiSrvIntent.putExtra(Constants.EXTRA_USER, mUser);
+                    apiSrvIntent.putExtra(Constants.EXTRA_SESSION, mSession);
                     apiSrvIntent.putExtra(Constants.EXTRA_MESSAGES, message);
 
                     context.startService(apiSrvIntent);
@@ -128,6 +125,8 @@ public class ChatFragment
         mUser = intent.getStringExtra(Constants.EXTRA_USER);
         if (TextUtils.isEmpty(mUser)) {
             mUser = Constants.DEFAULT_CHAT_USER;
+            Logger.warn("user is empty, use default: %s",
+                    mSession);
         }
 
         mAgentId = intent.getStringExtra(Constants.EXTRA_AGENT_ID);
@@ -135,8 +134,16 @@ public class ChatFragment
             Logger.error("agent ID should not be empty");
         }
 
-        Logger.debug("agent[%s] chat for user: %s",
+        mSession = intent.getStringExtra(Constants.EXTRA_SESSION);
+        if (TextUtils.isEmpty(mSession)) {
+            mSession = String.valueOf(System.currentTimeMillis());
+            Logger.error("session is empty, create new: %s",
+                    mSession);
+        }
+
+        Logger.debug("agent[%s, session: %s] chat for user: %s",
                 mAgentId,
+                mSession,
                 mUser);
     }
 
