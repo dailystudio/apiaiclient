@@ -4,4 +4,8 @@
     <dimen name="app_ver_font_size">14dp</dimen>
     <dimen name="app_ver_padding">3dp</dimen>
 
+    <dimen name="chat_button_width">80dp</dimen>
+    <dimen name="chat_icon_size">48dp</dimen>
+    <dimen name="chat_bottom_layout_padding">10dp</dimen>
+
 </resources>

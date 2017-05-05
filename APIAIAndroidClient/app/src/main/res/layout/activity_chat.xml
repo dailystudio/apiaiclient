@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:padding="@dimen/default_content_padding"
     android:focusable="true"
     android:focusableInTouchMode="true"
     android:orientation="vertical"
@@ -9,5 +8,10 @@
     android:layout_height="match_parent"
     tools:context=".activity.ChatActivity">
 
+    <fragment
+        android:id="@+id/fragment_chat"
+        android:name="com.dailystudio.apiaiandroidclient.fragment.ChatFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </RelativeLayout>

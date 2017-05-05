@@ -32,6 +32,12 @@
 
         </activity>
 
+        <provider
+            android:name="com.dailystudio.apiaiandroidclient.APIAIAndroidClientDatabaseContentProvider"
+            android:authorities="com.dailystudio.apiaiandroidclient"/>
+
+        <service android:name=".ChatService"/>
+
     </application>
 
 </manifest>

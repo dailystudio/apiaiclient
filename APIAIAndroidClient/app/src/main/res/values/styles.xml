@@ -23,4 +23,22 @@
         <item name="android:paddingStart">@dimen/app_ver_padding</item>
     </style>
 
+    <style name="ChatText" parent="DefaultLabel">
+        <item name="android:gravity">start|center_vertical</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:singleLine">false</item>
+    </style>
+
+    <style name="ChatTextSend" parent="ChatText">
+    </style>
+
+    <style name="ChatTextRecv" parent="ChatText">
+    </style>
+
+    <style name="BaseListView" parent="DefaultListView">
+        <!--
+                <item name="android:listSelector">@drawable/base_list_selector</item>
+        -->
+    </style>
+
 </resources>

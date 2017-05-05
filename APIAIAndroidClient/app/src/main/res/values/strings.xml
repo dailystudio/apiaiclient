@@ -14,4 +14,6 @@
     <string name="prompt_agent_removed">Agent is removed successfully.</string>
     <string name="prompt_agent_created">Agent is created successfully.</string>
 
+    <string name="btn_send">Send</string>
+
 </resources>
