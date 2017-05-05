@@ -1,5 +1,6 @@
 package com.dailystudio.apiaicommon.fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -77,21 +78,16 @@ public abstract class AbsAgentsListFragment extends AbsArrayRecyclerViewFragment
             return;
         }
 
-        AgentObject ao = (AgentObject)item;
-
-        final String url =
-                Agent.agentIdToUrl(ao.getAgentId());
-        if (TextUtils.isEmpty(url)) {
+        final Context context = getContext();
+        if (context == null) {
             return;
         }
 
-        Intent i = new Intent(Intent.ACTION_VIEW);
+        AgentObject ao = (AgentObject)item;
 
-        i.setData(Uri.parse(url));
-
-        startActivity(i);
+        launchAgent(context, ao);
     }
 
-    protected abstract void launchAgent(AgentObject ao);
+    protected abstract void launchAgent(Context context, AgentObject ao);
 
 }
