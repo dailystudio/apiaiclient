@@ -7,6 +7,10 @@ package com.dailystudio.apiaiandroidclient;
 public class Constants extends com.dailystudio.apiaicommon.Constants {
 
     public final static String ACTION_CHAT = "apiaiandroidclient.intent.ACTION_CHAT";
+    public final static String ACTION_TTS= "apiaiandroidclient.intent.ACTION_TTS";
+
+    public final static String EXTRA_SPEECH =
+            "apiaiandroidclient.intent.EXTRA_SPEECH";
 
     public final static String EXTRA_MESSAGES =
             "hellobuddy.intent.EXTRA_MESSAGES";

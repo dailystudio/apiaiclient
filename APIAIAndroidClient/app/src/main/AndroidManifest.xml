@@ -38,6 +38,7 @@
             android:authorities="com.dailystudio.apiaiandroidclient"/>
 
         <service android:name=".ChatService"/>
+        <service android:name=".TextToSpeechService"/>
 
     </application>
 
