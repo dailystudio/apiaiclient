@@ -15,7 +15,7 @@
 
         <activity android:name=".activity.MainActivity"
             android:icon="@mipmap/ic_launcher"
-            android:label="@string/activity_main"
+            android:label="@string/activity_title_main"
             android:theme="@style/AppTheme">
 
             <intent-filter>
@@ -27,10 +27,16 @@
 
         <activity android:name=".activity.ChatActivity"
             android:icon="@mipmap/ic_launcher"
-            android:label="@string/activity_chat"
+            android:label="@string/activity_title_chat"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme">
 
+        </activity>
+
+        <activity
+            android:name=".activity.SettingsActivity"
+            android:label="@string/activity_title_settings"
+            android:theme="@style/AppTheme">
         </activity>
 
         <provider

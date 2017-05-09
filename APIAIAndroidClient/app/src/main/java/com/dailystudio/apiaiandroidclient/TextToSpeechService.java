@@ -1,6 +1,7 @@
 package com.dailystudio.apiaiandroidclient;
 
 import android.app.IntentService;
+import android.content.Context;
 import android.content.Intent;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.Voice;
@@ -29,6 +30,22 @@ public class TextToSpeechService extends IntentService {
 
     public TextToSpeechService() {
         super(SRV_NAME);
+    }
+
+
+    public static void textToSpeech(Context context, CharSequence speech) {
+        if (context == null
+                || TextUtils.isEmpty(speech)) {
+            return;
+        }
+
+        Intent i = new Intent(Constants.ACTION_TTS);
+
+        i.setClass(context.getApplicationContext(),
+                TextToSpeechService.class);
+        i.putExtra(Constants.EXTRA_SPEECH, speech.toString());
+
+        context.startService(i);
     }
 
     @Override

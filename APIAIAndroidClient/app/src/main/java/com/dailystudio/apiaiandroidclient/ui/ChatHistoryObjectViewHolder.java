@@ -48,7 +48,8 @@ public class ChatHistoryObjectViewHolder extends AbsArrayItemViewHolder<ChatHist
                 @Override
                 public void onClick(View v) {
                     if (mSendMessageView != null) {
-                        tts(mSendMessageView.getContext(),
+                        TextToSpeechService.textToSpeech(
+                                mSendMessageView.getContext(),
                                 mSendMessageView.getText());
                     }
                 }
@@ -61,7 +62,8 @@ public class ChatHistoryObjectViewHolder extends AbsArrayItemViewHolder<ChatHist
                 @Override
                 public void onClick(View v) {
                     if (mRecvMessageView != null) {
-                        tts(mRecvMessageView.getContext(),
+                        TextToSpeechService.textToSpeech(
+                                mRecvMessageView.getContext(),
                                 mRecvMessageView.getText());
                     }
                 }
@@ -100,21 +102,6 @@ public class ChatHistoryObjectViewHolder extends AbsArrayItemViewHolder<ChatHist
             String text = historyObject.getText();
             mSendMessageView.setText(text);
         }
-    }
-
-    private void tts(Context context, CharSequence speech) {
-        if (context == null
-                || TextUtils.isEmpty(speech)) {
-            return;
-        }
-
-        Intent i = new Intent(Constants.ACTION_TTS);
-
-        i.setClass(context.getApplicationContext(),
-                TextToSpeechService.class);
-        i.putExtra(Constants.EXTRA_SPEECH, speech.toString());
-
-        context.startService(i);
     }
 
 }

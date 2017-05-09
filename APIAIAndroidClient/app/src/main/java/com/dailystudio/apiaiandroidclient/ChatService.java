@@ -112,6 +112,9 @@ public class ChatService extends IntentService {
                     user,
                     session,
                     dumpTextFromResponse(aiResponse), aiResponse);
+
+            TextToSpeechService.textToSpeech(context,
+                    dumpTextFromResponse(aiResponse));
         }
     }
 

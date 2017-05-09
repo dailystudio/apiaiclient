@@ -1,5 +1,6 @@
 package com.dailystudio.apiaiandroidclient.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
@@ -9,6 +10,7 @@ import com.dailystudio.apiaiandroidclient.R;
 import com.dailystudio.apiaiandroidclient.fragment.AboutFragment;
 import com.dailystudio.apiaicommon.Constants;
 import com.dailystudio.app.activity.ActionBarFragmentActivity;
+import com.dailystudio.app.utils.ActivityLauncher;
 import com.dailystudio.datetime.CalendarUtils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -43,6 +45,16 @@ public class MainActivity extends ActionBarFragmentActivity {
             AboutFragment fragment = new AboutFragment();
 
             fragment.show(getSupportFragmentManager(), "about");
+
+            return true;
+        } else if (id == R.id.action_settings) {
+            Intent i = new Intent();
+
+            i.setClass(getApplicationContext(),
+                    SettingsActivity.class);
+
+            ActivityLauncher.launchActivity(this, i);
+
             return true;
         }
 

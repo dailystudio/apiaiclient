@@ -25,6 +25,7 @@
 
     <style name="ChatText" parent="DefaultLabel">
         <item name="android:gravity">start|center_vertical</item>
+        <item name="android:autoLink">web|email</item>
         <item name="android:textStyle">normal</item>
         <item name="android:singleLine">false</item>
     </style>
