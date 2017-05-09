@@ -14,6 +14,7 @@ public class AppPrefs extends AbsPrefs {
 
     private final static String KEY_TTS_VOICE = "tts-voice";
     private final static String KEY_VOICE_ON_RECV = "voice-on-rect";
+    private final static String KEY_VOICE_MODAL = "voice-modal";
 
     private final static AppPrefs INSTANCE = new AppPrefs();
 
@@ -36,6 +37,14 @@ public class AppPrefs extends AbsPrefs {
 
     public static synchronized boolean isVoiceOnRectEnabled(Context context) {
         return INSTANCE.getBooleanPrefValue(context, KEY_VOICE_ON_RECV);
+    }
+
+    public static synchronized void setVoiceModal(Context context, String modalName) {
+        INSTANCE.setStringPrefValue(context, KEY_VOICE_MODAL, modalName);
+    }
+
+    public static synchronized String getVoiceModal(Context context) {
+        return INSTANCE.getStringPrefValue(context, KEY_VOICE_MODAL);
     }
 
 }

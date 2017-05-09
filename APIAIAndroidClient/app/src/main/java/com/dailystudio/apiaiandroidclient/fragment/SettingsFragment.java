@@ -12,6 +12,32 @@ import com.dailystudio.apiaiandroidclient.R;
 
 public class SettingsFragment extends com.dailystudio.app.fragment.SettingsFragment {
 
+    private static class FakeVoiceItem implements RadioSettingItem {
+
+        private int mLabelId;
+        private Context mContext;
+
+        private FakeVoiceItem(Context context, int labelId) {
+            mLabelId = labelId;
+            mContext = context;
+        }
+
+        @Override
+        public CharSequence getLabel() {
+            return mContext.getString(mLabelId);
+        }
+
+        @Override
+        public String getId() {
+            return getLabel().toString();
+        }
+
+        @Override
+        public String toString() {
+            return getId();
+        }
+    }
+
     @Override
     protected Setting[] createSettings(Context context) {
         Setting voiceOnRecv =
@@ -33,35 +59,30 @@ public class SettingsFragment extends com.dailystudio.app.fragment.SettingsFragm
 
                 };
 
+        FakeVoiceItem[] fakeVoices = {
+                new FakeVoiceItem(context, R.string.voice_male_1),
+                new FakeVoiceItem(context, R.string.voice_male_2),
+                new FakeVoiceItem(context, R.string.voice_female_1),
+                new FakeVoiceItem(context, R.string.voice_female_2),
+        };
+
         Setting voiceType =
                 new RadioSetting(context,
                         Constants.SETTING_VOICE_MODAL,
                         R.drawable.ic_setting_voice_modal,
                         R.string.settings_voice_modal,
                         new RadioSettingsLayoutHolder(),
-                        new int[]{
-                                R.string.voice_male_1,
-                                R.string.voice_male_2,
-                                R.string.voice_female_1,
-                                R.string.voice_female_2,
-                        },
-                        new int[]{
-                                R.string.voice_male_1,
-                                R.string.voice_male_2,
-                                R.string.voice_female_1,
-                                R.string.voice_female_2,
-                        }) {
+                        fakeVoices) {
 
                     @Override
-                    protected int getSelectedId() {
-                        return 0;
+                    protected String getSelectedId() {
+                        return AppPrefs.getVoiceModal(getContext());
                     }
 
                     @Override
-                    protected void setSelected(int selectedId) {
-
+                    protected void setSelected(String selectedId) {
+                        AppPrefs.setVoiceModal(getContext(), selectedId);
                     }
-
                 };
 
         return new Setting[] {
