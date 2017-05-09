@@ -33,8 +33,40 @@ public class SettingsFragment extends com.dailystudio.app.fragment.SettingsFragm
 
                 };
 
+        Setting voiceType =
+                new RadioSetting(context,
+                        Constants.SETTING_VOICE_MODAL,
+                        R.drawable.ic_setting_voice_modal,
+                        R.string.settings_voice_modal,
+                        new RadioSettingsLayoutHolder(),
+                        new int[]{
+                                R.string.voice_male_1,
+                                R.string.voice_male_2,
+                                R.string.voice_female_1,
+                                R.string.voice_female_2,
+                        },
+                        new int[]{
+                                R.string.voice_male_1,
+                                R.string.voice_male_2,
+                                R.string.voice_female_1,
+                                R.string.voice_female_2,
+                        }) {
+
+                    @Override
+                    protected int getSelectedId() {
+                        return 0;
+                    }
+
+                    @Override
+                    protected void setSelected(int selectedId) {
+
+                    }
+
+                };
+
         return new Setting[] {
                 voiceOnRecv,
+                voiceType,
         };
     }
 

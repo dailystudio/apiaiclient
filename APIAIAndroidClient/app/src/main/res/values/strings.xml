@@ -10,8 +10,14 @@
     <string name="action_about">About</string>
 
     <string name="settings_voice_on_recv">Voice on received messages</string>
+    <string name="settings_voice_modal">Voice modal</string>
 
     <string name="app_desc">This application is providing an easy way to test your <a href="http://api.ai">API.AI</a> agent. You can create agent through your Agent ID. The Agent ID could be found in <b>Integrations</b> section of your agent\'s slide menu.\n\nIf you have any problem, please feel free to contact this mail address:\n\n\t\t\tnan.yeah@gmail.com\n\n@Copyright\n2010 - 2017 by Daily Studio.</string>
+
+    <string name="voice_male_1">Male 1</string>
+    <string name="voice_male_2">Male 2</string>
+    <string name="voice_female_1">Female 1</string>
+    <string name="voice_female_2">Female 2</string>
 
     <string name="prompt_creating_shortcut">Creating agent shortcut ...</string>
     <string name="prompt_shortcut_created">Shortcut is created successfully.</string>

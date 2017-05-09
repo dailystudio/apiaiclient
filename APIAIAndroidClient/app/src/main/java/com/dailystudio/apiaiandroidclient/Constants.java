@@ -27,4 +27,5 @@ public class Constants extends com.dailystudio.apiaicommon.Constants {
     public final static String DEFAULT_CHAT_USER = "api.ai.user.default";
 
     public static final String SETTING_VOICE_ON_RECT = "setting-voice-on-rect";
+    public static final String SETTING_VOICE_MODAL = "setting-voice-modal";
 }
