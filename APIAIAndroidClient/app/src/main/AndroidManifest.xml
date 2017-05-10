@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
 
     <application
         android:name=".APIAIAndroidClientApplication"
@@ -30,6 +31,12 @@
             android:label="@string/activity_title_chat"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme">
+
+            <intent-filter>
+                <action android:name="apiaiandroidclient.intent.ACTION_CHAT" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
 
         </activity>
 

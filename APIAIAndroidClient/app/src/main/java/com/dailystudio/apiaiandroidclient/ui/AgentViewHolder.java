@@ -1,9 +1,11 @@
 package com.dailystudio.apiaiandroidclient.ui;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.support.v4.app.FragmentManager;
 import android.view.View;
 
+import com.dailystudio.apiaiandroidclient.asynctask.GenerateShortcutAsyncTask;
 import com.dailystudio.apiaicommon.database.AgentObject;
 import com.dailystudio.apiaicommon.ui.AbsAgentViewHolder;
 
@@ -23,6 +25,9 @@ public class AgentViewHolder extends AbsAgentViewHolder {
         if (context == null || agentObject == null) {
             return;
         }
+
+        new GenerateShortcutAsyncTask(agentObject).executeOnExecutor(
+                AsyncTask.THREAD_POOL_EXECUTOR, context);
     }
 
 }
