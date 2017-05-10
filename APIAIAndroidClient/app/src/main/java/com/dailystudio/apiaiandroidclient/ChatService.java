@@ -128,12 +128,35 @@ public class ChatService extends IntentService {
 
             if (AppPrefs.isVoiceOnRectEnabled(context)) {
                 TextToSpeechService.textToSpeech(context,
-                        dumpTextFromResponse(aiResponse));
+                        dumpSpeechFromResponse(aiResponse));
             }
         }
     }
 
     private String dumpTextFromResponse(AIResponse aiResponse) {
+        if (aiResponse == null) {
+            return null;
+        }
+
+        final Result result = aiResponse.getResult();
+        if (result == null) {
+            return null;
+        }
+
+        final Fulfillment fulfillment = result.getFulfillment();
+        if (fulfillment == null) {
+            return null;
+        }
+
+        String text = fulfillment.getDisplayText();
+        if (!TextUtils.isEmpty(text)) {
+            return text;
+        }
+
+        return fulfillment.getSpeech();
+    }
+
+    private String dumpSpeechFromResponse(AIResponse aiResponse) {
         if (aiResponse == null) {
             return null;
         }
