@@ -13,4 +13,11 @@ public class APIAIAndroidClientApplication extends APIAICommonApplication {
         return BuildConfig.DEBUG;
     }
 
+    @Override
+    public void onTerminate() {
+        super.onTerminate();
+
+        TextToSpeechService.shutdown(getApplicationContext());
+    }
+
 }

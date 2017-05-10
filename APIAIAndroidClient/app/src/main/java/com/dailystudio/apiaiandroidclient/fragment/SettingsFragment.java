@@ -200,4 +200,11 @@ public class SettingsFragment extends com.dailystudio.app.fragment.SettingsFragm
 
     };
 
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        TextToSpeechService.stop(getContext());
+    }
+    
 }

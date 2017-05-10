@@ -19,6 +19,7 @@ import com.dailystudio.apiaiandroidclient.AppPrefs;
 import com.dailystudio.apiaiandroidclient.ChatService;
 import com.dailystudio.apiaiandroidclient.Constants;
 import com.dailystudio.apiaiandroidclient.R;
+import com.dailystudio.apiaiandroidclient.TextToSpeechService;
 import com.dailystudio.apiaiandroidclient.database.ChatHistoryObject;
 import com.dailystudio.apiaiandroidclient.loader.ChatHistoryLoader;
 import com.dailystudio.apiaiandroidclient.loader.LoaderIds;
@@ -223,6 +224,13 @@ public class ChatFragment
 
         AppPrefs.getInstance().unregisterPrefChangesReceiver(
                 getContext(), mAppPrefsChangedReceiver);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        TextToSpeechService.stop(getContext());
     }
 
     private String getEditText(EditText editText) {

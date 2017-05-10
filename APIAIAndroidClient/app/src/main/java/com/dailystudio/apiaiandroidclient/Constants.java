@@ -8,7 +8,9 @@ public class Constants extends com.dailystudio.apiaicommon.Constants {
 
     public final static String ACTION_CHAT = "apiaiandroidclient.intent.ACTION_CHAT";
     public final static String ACTION_TTS = "apiaiandroidclient.intent.ACTION_TTS";
-    public final static String ACTION_RESET_TTS = "apiaiandroidclient.intent.ACTION_RESET_TTS";
+    public final static String ACTION_RESET = "apiaiandroidclient.intent.ACTION_RESET";
+    public final static String ACTION_SHUTDOWN = "apiaiandroidclient.intent.ACTION_RESET";
+    public final static String ACTION_STOP = "apiaiandroidclient.intent.ACTION_STOP";
 
     public final static String EXTRA_SPEECH =
             "apiaiandroidclient.intent.EXTRA_SPEECH";

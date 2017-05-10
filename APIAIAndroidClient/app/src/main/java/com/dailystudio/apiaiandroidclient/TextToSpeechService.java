@@ -52,7 +52,33 @@ public class TextToSpeechService extends IntentService {
             return;
         }
 
-        Intent i = new Intent(Constants.ACTION_RESET_TTS);
+        Intent i = new Intent(Constants.ACTION_RESET);
+
+        i.setClass(context.getApplicationContext(),
+                TextToSpeechService.class);
+
+        context.startService(i);
+    }
+
+    public static void shutdown(Context context) {
+        if (context == null) {
+            return;
+        }
+
+        Intent i = new Intent(Constants.ACTION_SHUTDOWN);
+
+        i.setClass(context.getApplicationContext(),
+                TextToSpeechService.class);
+
+        context.startService(i);
+    }
+
+    public static void stop(Context context) {
+        if (context == null) {
+            return;
+        }
+
+        Intent i = new Intent(Constants.ACTION_STOP);
 
         i.setClass(context.getApplicationContext(),
                 TextToSpeechService.class);
@@ -89,8 +115,21 @@ public class TextToSpeechService extends IntentService {
                 tts.speak(speech, TextToSpeech.QUEUE_FLUSH,
                         null, String.valueOf(System.currentTimeMillis()));
             }
-        } else if (Constants.ACTION_RESET_TTS.equals(action)) {
-            Logger.warn("reset tts");
+        } else if (Constants.ACTION_STOP.equals(action)) {
+            final TextToSpeech tts = getTTSEngine();
+            if (tts == null) {
+                Logger.warn("TTS engine is unavailable.");
+
+                return;
+            }
+
+            if (sTTSInitialized != false) {
+                Logger.debug("stop talking");
+                tts.stop();
+            }
+        } else if (Constants.ACTION_RESET.equals(action)
+                || Constants.ACTION_SHUTDOWN.equals(action)) {
+            Logger.warn("reset / shutdown tts");
             if (sTTSInstance != null) {
                 sTTSInstance.shutdown();
                 sTTSInstance = null;
