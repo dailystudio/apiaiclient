@@ -12,7 +12,6 @@ public class AppPrefs extends AbsPrefs {
 
     private final static String PREF_NAME = "app-prefs";
 
-    private final static String KEY_TTS_VOICE = "tts-voice";
     private final static String KEY_VOICE_ON_RECV = "voice-on-rect";
     private final static String KEY_VOICE_MODAL = "voice-modal";
 
@@ -21,14 +20,6 @@ public class AppPrefs extends AbsPrefs {
     @Override
     protected String getPrefName() {
         return PREF_NAME;
-    }
-
-    public static synchronized void setTTSVoice(Context context, String voiceName) {
-        INSTANCE.setStringPrefValue(context, KEY_TTS_VOICE, voiceName);
-    }
-
-    public static synchronized String getTTSVoice(Context context) {
-        return INSTANCE.getStringPrefValue(context, KEY_TTS_VOICE);
     }
 
     public static synchronized void setVoiceOnRectEnabled(Context context, boolean enabled) {

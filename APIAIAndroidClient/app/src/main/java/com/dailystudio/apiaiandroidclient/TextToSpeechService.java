@@ -32,7 +32,6 @@ public class TextToSpeechService extends IntentService {
         super(SRV_NAME);
     }
 
-
     public static void textToSpeech(Context context, CharSequence speech) {
         if (context == null
                 || TextUtils.isEmpty(speech)) {
@@ -44,6 +43,19 @@ public class TextToSpeechService extends IntentService {
         i.setClass(context.getApplicationContext(),
                 TextToSpeechService.class);
         i.putExtra(Constants.EXTRA_SPEECH, speech.toString());
+
+        context.startService(i);
+    }
+
+    public static void reset(Context context) {
+        if (context == null) {
+            return;
+        }
+
+        Intent i = new Intent(Constants.ACTION_RESET_TTS);
+
+        i.setClass(context.getApplicationContext(),
+                TextToSpeechService.class);
 
         context.startService(i);
     }
@@ -77,6 +89,14 @@ public class TextToSpeechService extends IntentService {
                 tts.speak(speech, TextToSpeech.QUEUE_ADD,
                         null, String.valueOf(System.currentTimeMillis()));
             }
+        } else if (Constants.ACTION_RESET_TTS.equals(action)) {
+            Logger.warn("reset tts");
+            if (sTTSInstance != null) {
+                sTTSInstance.shutdown();
+                sTTSInstance = null;
+            }
+
+            sTTSInitialized = false;
         }
 
     }
@@ -85,8 +105,6 @@ public class TextToSpeechService extends IntentService {
         if (sTTSInstance == null) {
             sTTSInstance = new TextToSpeech(getApplicationContext(),
                     mOnInitListener);
-
-
         }
 
         return sTTSInstance;
@@ -108,7 +126,7 @@ public class TextToSpeechService extends IntentService {
                 tts.setLanguage(Locale.ENGLISH);
             }
 
-            final String voice = AppPrefs.getTTSVoice(getApplicationContext());
+            final String voice = AppPrefs.getVoiceModal(getApplicationContext());
             if (!TextUtils.isEmpty(voice)) {
                 Set<Voice> voices = tts.getVoices();
                 if (voices != null) {
