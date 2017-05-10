@@ -67,7 +67,6 @@ public class SettingsFragment extends com.dailystudio.app.fragment.SettingsFragm
             List<VoiceModalItem> items = new ArrayList<>();
 
             for (Voice voice: voices) {
-                Logger.debug("voice: %s", voice);
                 if (voice.isNetworkConnectionRequired() == false
                         && Locale.US.equals(voice.getLocale())) {
                     items.add(new VoiceModalItem(voice));

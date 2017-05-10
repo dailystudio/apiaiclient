@@ -1,19 +1,17 @@
 package com.dailystudio.apiaiandroidclient.ui;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.Resources;
-import android.text.TextUtils;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.dailystudio.apiaiandroidclient.Constants;
 import com.dailystudio.apiaiandroidclient.R;
 import com.dailystudio.apiaiandroidclient.TextToSpeechService;
 import com.dailystudio.apiaiandroidclient.database.ChatHistoryObject;
+import com.dailystudio.apiaicommon.database.AgentObject;
 import com.dailystudio.app.ui.AbsArrayItemViewHolder;
-
-import ai.api.model.AIRequest;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 /**
  * Created by nanye on 17/3/6.
@@ -21,15 +19,20 @@ import ai.api.model.AIRequest;
 
 public class ChatHistoryObjectViewHolder extends AbsArrayItemViewHolder<ChatHistoryObject> {
 
-    private TextView mRecvMessageView;
+    private AgentObject mAgentInfo;
 
+    private TextView mRecvMessageView;
     private TextView mSendMessageView;
+
+    private ImageView mRecvIconView;
 
     private View mItemSendCard;
     private View mItemRecvCard;
 
-    public ChatHistoryObjectViewHolder(View itemView) {
+    public ChatHistoryObjectViewHolder(View itemView, AgentObject agentInfo) {
         super(itemView);
+
+        mAgentInfo = agentInfo;
 
         setupViews(itemView);
     }
@@ -38,6 +41,8 @@ public class ChatHistoryObjectViewHolder extends AbsArrayItemViewHolder<ChatHist
         if (itemView == null) {
             return;
         }
+
+        mRecvIconView = (ImageView) itemView.findViewById(R.id.icon_recv);
 
         mItemSendCard = itemView.findViewById(R.id.send_card);
         mItemRecvCard = itemView.findViewById(R.id.recv_card);
@@ -102,6 +107,19 @@ public class ChatHistoryObjectViewHolder extends AbsArrayItemViewHolder<ChatHist
             String text = historyObject.getText();
             mSendMessageView.setText(text);
         }
+
+/*
+        if (mRecvIconView != null) {
+            if (mAgentInfo != null) {
+                ImageLoader.getInstance().displayImage(
+                        mAgentInfo.getIconUrl(),
+                        mRecvIconView,
+                        com.dailystudio.apiaicommon.Constants.DEFAULT_IMAGE_LOADER_OPTIONS);
+            } else {
+                mRecvIconView.setImageResource(R.drawable.ic_chat_robot);
+            }
+        }
+*/
     }
 
 }

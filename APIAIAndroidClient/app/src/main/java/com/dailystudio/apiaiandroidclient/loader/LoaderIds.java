@@ -8,5 +8,7 @@ public class LoaderIds extends com.dailystudio.apiaicommon.loader.LoaderIds {
 
     public static final int LOADER_CHAT_HISTORY = 0x101;
 
+    public static final int LOADER_AGENT = 0x201;
+
 
 }

@@ -22,6 +22,7 @@ import com.dailystudio.apiaiandroidclient.loader.ChatHistoryLoader;
 import com.dailystudio.apiaiandroidclient.loader.LoaderIds;
 import com.dailystudio.apiaiandroidclient.ui.ChatHistoryObjectViewHolder;
 import com.dailystudio.apiaiandroidclient.ui.ChatHistoryRecyclerViewAdapter;
+import com.dailystudio.apiaicommon.database.AgentObject;
 import com.dailystudio.app.fragment.AbsArrayRecyclerViewFragment;
 import com.dailystudio.development.Logger;
 
@@ -217,4 +218,10 @@ public class ChatFragment
         return editable.toString();
     }
 
+    public void setAgentInfo(AgentObject data) {
+        RecyclerView.Adapter adapter = getAdapter();
+        if (adapter instanceof ChatHistoryRecyclerViewAdapter) {
+            ((ChatHistoryRecyclerViewAdapter)adapter).setAgentInfo(data);
+        }
+    }
 }

@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 
 import com.dailystudio.apiaiandroidclient.R;
 import com.dailystudio.apiaiandroidclient.database.ChatHistoryObject;
+import com.dailystudio.apiaicommon.database.AgentObject;
 import com.dailystudio.app.ui.AbsArrayRecyclerAdapter;
 
 /**
@@ -15,6 +16,8 @@ import com.dailystudio.app.ui.AbsArrayRecyclerAdapter;
 public class ChatHistoryRecyclerViewAdapter
         extends AbsArrayRecyclerAdapter<ChatHistoryObject, ChatHistoryObjectViewHolder> {
 
+    private AgentObject mAgentInfo;
+
     public ChatHistoryRecyclerViewAdapter(Context context) {
         super(context);
     }
@@ -23,9 +26,15 @@ public class ChatHistoryRecyclerViewAdapter
     public ChatHistoryObjectViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = mLayoutInflater.inflate(
                 R.layout.layout_chat_history_item, null);
-        ChatHistoryObjectViewHolder viewHolder = new ChatHistoryObjectViewHolder(view);
+        ChatHistoryObjectViewHolder viewHolder = new ChatHistoryObjectViewHolder(view, mAgentInfo);
 
         return viewHolder;
+    }
+
+    public void setAgentInfo(AgentObject info) {
+        mAgentInfo = info;
+
+        notifyDataSetChanged();
     }
 
 }
