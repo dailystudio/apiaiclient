@@ -86,7 +86,7 @@ public class TextToSpeechService extends IntentService {
                 sPendingSpeeches.add(speech);
             } else {
                 Logger.debug("speak now: %s", speech);
-                tts.speak(speech, TextToSpeech.QUEUE_ADD,
+                tts.speak(speech, TextToSpeech.QUEUE_FLUSH,
                         null, String.valueOf(System.currentTimeMillis()));
             }
         } else if (Constants.ACTION_RESET_TTS.equals(action)) {
