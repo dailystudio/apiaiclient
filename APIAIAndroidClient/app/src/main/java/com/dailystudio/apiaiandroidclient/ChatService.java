@@ -8,6 +8,9 @@ import android.text.TextUtils;
 import com.dailystudio.apiaiandroidclient.database.ChatHistoryDatabaseModal;
 import com.dailystudio.development.Logger;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import ai.api.AIServiceException;
 import ai.api.android.AIConfiguration;
 import ai.api.android.AIDataService;
@@ -23,24 +26,34 @@ public class ChatService extends IntentService {
 
     private final static String SRV_NAME = "apiai-chat-service";
 
-    private final static String ACCESS_TOKEN =
-            "6b95beccba2349a4b91d3f5838e9bfc5";
+    private static Map<String, AIDataService> sAIDataServices = new HashMap<>();
 
-    private static final AIConfiguration AI_CONFIG = new AIConfiguration(ACCESS_TOKEN,
-            AIConfiguration.SupportedLanguages.English,
-            AIConfiguration.RecognitionEngine.System);
-
-    private static AIDataService sAIDataService;
-
-    private synchronized AIDataService getAIDataService(Context context) {
-        if (sAIDataService == null
-                && context != null) {
-            sAIDataService = new AIDataService(
-                    context.getApplicationContext(),
-                    AI_CONFIG);
+    private synchronized AIDataService getAIDataService(Context context, String agentId) {
+        if (context == null || TextUtils.isEmpty(agentId)) {
+            return null;
         }
 
-        return sAIDataService;
+        AIDataService service = sAIDataServices.get(agentId);
+        if (service == null) {
+            String accessToken = AppPrefs.getAgentAccessToken(context, agentId);
+            if (TextUtils.isEmpty(accessToken)) {
+                Logger.debug("access token is NOT set for agent: %s", agentId);
+
+                return null;
+            }
+
+            AIConfiguration aiConfig = new AIConfiguration(accessToken,
+                    AIConfiguration.SupportedLanguages.English,
+                    AIConfiguration.RecognitionEngine.System);
+
+            service = new AIDataService(
+                    context.getApplicationContext(),
+                    aiConfig);
+
+            sAIDataServices.put(agentId, service);
+        }
+
+        return service;
     }
 
     public ChatService() {
@@ -77,7 +90,7 @@ public class ChatService extends IntentService {
                 return;
             }
 
-            AIDataService aiDataService = getAIDataService(context);
+            AIDataService aiDataService = getAIDataService(context, agent);
             if (aiDataService == null) {
                 Logger.warn("API.AI data service is unavailable.");
                 return;

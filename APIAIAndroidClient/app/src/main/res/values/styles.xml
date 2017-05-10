@@ -42,4 +42,10 @@
         -->
     </style>
 
+    <style name="BaseDialogTitle" parent="DefaultLabel" >
+        <item name="android:singleLine">true</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
+
 </resources>

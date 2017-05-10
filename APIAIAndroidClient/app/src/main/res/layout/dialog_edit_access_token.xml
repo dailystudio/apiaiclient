@@ -1,0 +1,24 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/edit_group_title"
+        android:text="@string/dialog_title_access_token"
+        style="@style/BaseDialogTitle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dialog_title_height"
+        android:contentDescription="@string/app_name" />
+
+    <EditText
+        android:id="@+id/edit_access_token"
+        android:inputType="textPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp" />
+
+</LinearLayout>

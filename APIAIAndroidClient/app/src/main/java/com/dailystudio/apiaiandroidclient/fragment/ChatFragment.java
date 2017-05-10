@@ -1,5 +1,6 @@
 package com.dailystudio.apiaiandroidclient.fragment;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import com.dailystudio.apiaiandroidclient.AppPrefs;
 import com.dailystudio.apiaiandroidclient.ChatService;
 import com.dailystudio.apiaiandroidclient.Constants;
 import com.dailystudio.apiaiandroidclient.R;
@@ -23,7 +25,7 @@ import com.dailystudio.apiaiandroidclient.loader.LoaderIds;
 import com.dailystudio.apiaiandroidclient.ui.ChatHistoryObjectViewHolder;
 import com.dailystudio.apiaiandroidclient.ui.ChatHistoryRecyclerViewAdapter;
 import com.dailystudio.apiaicommon.database.AgentObject;
-import com.dailystudio.app.fragment.AbsArrayRecyclerViewFragment;
+import com.dailystudio.app.fragment.*;
 import com.dailystudio.development.Logger;
 
 import java.util.List;
@@ -146,6 +148,8 @@ public class ChatFragment
                 mAgentId,
                 mSession,
                 mUser);
+
+        checkAccessToken();
     }
 
     @Override
@@ -205,6 +209,22 @@ public class ChatFragment
         return new ChatHistoryLoader(getActivity(), mAgentId, mUser);
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        AppPrefs.getInstance().registerPrefChangesReceiver(
+                context, mAppPrefsChangedReceiver);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+
+        AppPrefs.getInstance().unregisterPrefChangesReceiver(
+                getContext(), mAppPrefsChangedReceiver);
+    }
+
     private String getEditText(EditText editText) {
         if (editText == null) {
             return null;
@@ -224,4 +244,37 @@ public class ChatFragment
             ((ChatHistoryRecyclerViewAdapter)adapter).setAgentInfo(data);
         }
     }
+
+    private void checkAccessToken() {
+        if (TextUtils.isEmpty(mAgentId)) {
+            return;
+        }
+
+        boolean valid = false;
+        if (!TextUtils.isEmpty(AppPrefs.getAgentAccessToken(
+                getContext(), mAgentId))) {
+            valid = true;
+        }
+
+        if (mMessageEdit != null) {
+            mMessageEdit.setEnabled(valid);
+        }
+    }
+
+    private BroadcastReceiver mAppPrefsChangedReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent == null) {
+                return;
+            }
+
+            final String key = intent.getStringExtra(
+                    AppPrefs.EXTRA_PREF_KEY);
+            if (!TextUtils.isEmpty(key)
+                    && key.contains("access-token-")) {
+                checkAccessToken();
+            }
+        }
+    };
+
 }
