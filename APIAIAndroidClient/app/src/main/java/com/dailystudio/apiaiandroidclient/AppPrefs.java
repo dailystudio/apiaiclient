@@ -35,7 +35,7 @@ public class AppPrefs extends AbsPrefs {
     }
 
     public static synchronized boolean isVoiceOnRectEnabled(Context context) {
-        return INSTANCE.getBooleanPrefValue(context, KEY_VOICE_ON_RECV);
+        return INSTANCE.getBooleanPrefValue(context, KEY_VOICE_ON_RECV, true);
     }
 
     public static synchronized void setVoiceModal(Context context, String modalName) {
