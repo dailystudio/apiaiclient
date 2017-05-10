@@ -48,3 +48,6 @@
 # -------- Jsoup --------
 -keeppackagenames org.jsoup.nodes
 
+# -------- API.AI SDK --------
+-dontwarn org.apache.**
+
