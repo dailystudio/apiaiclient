@@ -113,8 +113,10 @@ public class ChatService extends IntentService {
                     session,
                     dumpTextFromResponse(aiResponse), aiResponse);
 
-            TextToSpeechService.textToSpeech(context,
-                    dumpTextFromResponse(aiResponse));
+            if (AppPrefs.isVoiceOnRectEnabled(context)) {
+                TextToSpeechService.textToSpeech(context,
+                        dumpTextFromResponse(aiResponse));
+            }
         }
     }
 
