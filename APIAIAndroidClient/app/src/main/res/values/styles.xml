@@ -48,4 +48,9 @@
         <item name="android:background">@color/colorPrimary</item>
     </style>
 
+    <style name="SendButton">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:backgroundTint">@color/def_btn_bg_int</item>
+    </style>
+
 </resources>

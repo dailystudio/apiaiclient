@@ -1,9 +1,11 @@
 package com.dailystudio.apiaiandroidclient.fragment;
 
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -27,9 +29,12 @@ import com.dailystudio.apiaiandroidclient.ui.ChatHistoryObjectViewHolder;
 import com.dailystudio.apiaiandroidclient.ui.ChatHistoryRecyclerViewAdapter;
 import com.dailystudio.apiaicommon.database.AgentObject;
 import com.dailystudio.app.fragment.*;
+import com.dailystudio.app.utils.ActivityLauncher;
 import com.dailystudio.development.Logger;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by nanye on 17/3/31.
@@ -38,6 +43,8 @@ import java.util.List;
 public class ChatFragment
         extends AbsArrayRecyclerViewFragment<ChatHistoryObject, ChatHistoryObjectViewHolder> {
 
+    private final static int REQ_CODE_VOICE_INPUT = 0x1006;
+
     private String mUser;
     private String mAgentId;
 
@@ -45,6 +52,7 @@ public class ChatFragment
 
     private EditText mMessageEdit;
     private View mSendBtn;
+    private View mVoiceInputBtn;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -95,6 +103,26 @@ public class ChatFragment
             });
         }
 
+        mVoiceInputBtn = fragmentView.findViewById(R.id.btn_voice_input);
+        if (mVoiceInputBtn != null) {
+            mVoiceInputBtn.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+                    intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                            RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+                    intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,
+                            Locale.ENGLISH);
+                    intent.putExtra(RecognizerIntent.EXTRA_PROMPT,
+                            getString(R.string.prompt_input_voice));
+                    ActivityLauncher.launchActivityForResult(ChatFragment.this,
+                            intent, REQ_CODE_VOICE_INPUT);
+                }
+
+            });
+        }
+
         mMessageEdit = (EditText) fragmentView.findViewById(R.id.message);
         if (mMessageEdit != null) {
             mMessageEdit.addTextChangedListener(new TextWatcher() {
@@ -118,6 +146,38 @@ public class ChatFragment
             });
         }
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case REQ_CODE_VOICE_INPUT: {
+                if (resultCode == Activity.RESULT_OK
+                        && null != data) {
+                    ArrayList<String> result = data
+                            .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    Logger.debug("result = %s", result);
+                    if (mMessageEdit != null
+                            && result != null
+                            && result.size() > 0) {
+                        final String speech = result.get(0);
+
+                        final String original = getEditText(mMessageEdit);
+                        if (TextUtils.isEmpty(original)) {
+                            mMessageEdit.setText(speech);
+                            mMessageEdit.setSelection(speech.length());
+                        } else {
+                            mMessageEdit.append(speech);
+                        }
+
+                        mMessageEdit.requestFocus();
+                    }
+                }
+
+                break;
+            }
+
+        }}
 
     @Override
     public void bindIntent(Intent intent) {

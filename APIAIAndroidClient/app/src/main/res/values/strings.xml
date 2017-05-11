@@ -24,6 +24,7 @@
     <string name="prompt_agent_removed">Agent is removed successfully.</string>
     <string name="prompt_agent_created">Agent is created successfully.</string>
     <string name="prompt_access_token_invalid">Access token of agent is NOT set.</string>
+    <string name="prompt_input_voice">Say something to the robot</string>
 
     <string name="btn_send">Send</string>
 
