@@ -133,7 +133,7 @@ public class ChatService extends IntentService {
         }
     }
 
-    private String dumpTextFromResponse(AIResponse aiResponse) {
+    public static String dumpTextFromResponse(AIResponse aiResponse) {
         if (aiResponse == null) {
             return null;
         }
@@ -156,7 +156,7 @@ public class ChatService extends IntentService {
         return fulfillment.getSpeech();
     }
 
-    private String dumpSpeechFromResponse(AIResponse aiResponse) {
+    public static String dumpSpeechFromResponse(AIResponse aiResponse) {
         if (aiResponse == null) {
             return null;
         }

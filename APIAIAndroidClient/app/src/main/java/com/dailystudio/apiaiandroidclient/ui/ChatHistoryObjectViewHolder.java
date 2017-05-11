@@ -2,16 +2,19 @@ package com.dailystudio.apiaiandroidclient.ui;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.dailystudio.apiaiandroidclient.ChatService;
 import com.dailystudio.apiaiandroidclient.R;
 import com.dailystudio.apiaiandroidclient.TextToSpeechService;
 import com.dailystudio.apiaiandroidclient.database.ChatHistoryObject;
 import com.dailystudio.apiaicommon.database.AgentObject;
 import com.dailystudio.app.ui.AbsArrayItemViewHolder;
-import com.nostra13.universalimageloader.core.ImageLoader;
+
+import ai.api.model.AIResponse;
 
 /**
  * Created by nanye on 17/3/6.
@@ -53,9 +56,7 @@ public class ChatHistoryObjectViewHolder extends AbsArrayItemViewHolder<ChatHist
                 @Override
                 public void onClick(View v) {
                     if (mSendMessageView != null) {
-                        TextToSpeechService.textToSpeech(
-                                mSendMessageView.getContext(),
-                                mSendMessageView.getText());
+                        ttsTextOnView(mSendMessageView);
                     }
                 }
             });
@@ -67,9 +68,7 @@ public class ChatHistoryObjectViewHolder extends AbsArrayItemViewHolder<ChatHist
                 @Override
                 public void onClick(View v) {
                     if (mRecvMessageView != null) {
-                        TextToSpeechService.textToSpeech(
-                                mRecvMessageView.getContext(),
-                                mRecvMessageView.getText());
+                        ttsTextOnView(mRecvMessageView);
                     }
                 }
             });
@@ -100,26 +99,48 @@ public class ChatHistoryObjectViewHolder extends AbsArrayItemViewHolder<ChatHist
 
         if (mRecvMessageView != null) {
             String text = historyObject.getText();
+
             mRecvMessageView.setText(text);
+            mRecvMessageView.setTag(historyObject);
         }
 
         if (mSendMessageView != null) {
             String text = historyObject.getText();
             mSendMessageView.setText(text);
+            mSendMessageView.setTag(historyObject);
         }
 
-/*
-        if (mRecvIconView != null) {
-            if (mAgentInfo != null) {
-                ImageLoader.getInstance().displayImage(
-                        mAgentInfo.getIconUrl(),
-                        mRecvIconView,
-                        com.dailystudio.apiaicommon.Constants.DEFAULT_IMAGE_LOADER_OPTIONS);
-            } else {
-                mRecvIconView.setImageResource(R.drawable.ic_chat_robot);
+    }
+
+    private void ttsTextOnView(TextView textView) {
+        if (textView == null) {
+            return;
+        }
+
+        Object o = textView.getTag();
+        if (o instanceof ChatHistoryObject == false) {
+            return;
+        }
+
+        ChatHistoryObject historyObject = (ChatHistoryObject)o;
+
+        String speech = null;
+        if (historyObject.getType() == ChatHistoryObject.TYPE_SEND) {
+            speech = historyObject.getText();
+        } else {
+            Object recvObject = historyObject.getMessage();
+            if (recvObject instanceof AIResponse) {
+                AIResponse aiResponse = (AIResponse) recvObject;
+
+                speech = ChatService.dumpSpeechFromResponse(aiResponse);
             }
         }
-*/
+
+        if (!TextUtils.isEmpty(speech)) {
+            TextToSpeechService.textToSpeech(
+                    mSendMessageView.getContext(),
+                    speech);
+        }
     }
 
 }
